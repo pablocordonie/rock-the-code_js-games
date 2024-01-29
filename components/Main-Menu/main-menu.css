@@ -1,0 +1,12 @@
+@import '../../css/style.css';
+
+.rtc-welcome {
+  display: flex;
+  align-items: center;
+  height: 100svh;
+  justify-content: center;
+}
+
+.rtc-welcome-h1 {
+  font-size: 4rem;
+}
