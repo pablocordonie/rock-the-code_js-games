@@ -2,11 +2,35 @@
 
 .rtc-welcome {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 2rem;
   height: 100svh;
   justify-content: center;
 }
 
 .rtc-welcome-h1 {
-  font-size: 4rem;
+  font-size: 2.5rem;
+}
+
+.rtc-welcome-games {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.rtc-welcome-games-button {
+  background-color: #ffffff;
+  border: 0.3rem solid #cc0000;
+  border-radius: 0.75rem;
+  color: #e60023;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 1.25rem 2.5rem 1.25rem 2.5rem;
+}
+
+.rtc-welcome-games-button:hover {
+  background-color: #cc0000;
+  color: #ffffff;
 }
