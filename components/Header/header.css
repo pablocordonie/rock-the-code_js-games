@@ -1,1 +1,112 @@
 @import '../../css/style.css';
+
+.rtc-header {
+  display: none;
+}
+
+.rtc-header.open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0 2rem 0;
+}
+
+.rtc-header-h1 {
+  cursor: default;
+  font-size: 1.5rem;
+}
+
+.rtc-header-games {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.rtc-header-games-button {
+  background-color: #ffffff;
+  border: 0.3rem solid #cc0000;
+  border-radius: 0.75rem;
+  color: #e60023;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+@media screen and (min-width: 300px) {
+  .rtc-header-games {
+    gap: 1rem;
+  }
+
+  .rtc-header-games-button {
+    padding-left: 1.275rem;
+    padding-right: 1.275rem;
+  }
+}
+
+@media screen and (min-width: 350px) {
+  .rtc-header-games {
+    gap: 1.5rem;
+  }
+  .rtc-header-games-button {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .rtc-header-games {
+    gap: 1.75rem;
+  }
+  .rtc-header-games-button {
+    padding-left: 1.95rem;
+    padding-right: 1.95rem;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .rtc-header.open {
+    gap: 0.75rem;
+  }
+  .rtc-header-games {
+    gap: 2rem;
+  }
+  .rtc-header-games-button {
+    padding-left: 2.25rem;
+    padding-right: 2.25rem;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .rtc-header.open {
+    flex-direction: row;
+    gap: 4.5rem;
+    justify-content: center;
+  }
+
+  .rtc-header-games-button {
+    font-size: 0.9rem;
+    padding: 0.75rem 2.5rem 0.75rem 2.5rem;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .rtc-header.open {
+    gap: 8rem;
+  }
+
+  .rtc-header-games {
+    gap: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .rtc-header.open {
+    gap: 16rem;
+  }
+
+  .rtc-header-games {
+    gap: 4rem;
+  }
+}

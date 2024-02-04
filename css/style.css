@@ -1,11 +1,13 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 600;
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
 
+:root {
+  font-family: 'Comfortaa', sans-serif;
+  line-height: 1.5;
+
+  background-color: #242424;
   color-scheme: light dark;
   color: #ffffff;
-  background-color: #242424;
+  margin: 0 0.5rem;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,4 +18,10 @@
 * {
   box-sizing: border-box;
   margin: 0;
+}
+
+@media screen and (min-width: 350px) {
+  :root {
+    margin: 0 1rem;
+  }
 }
