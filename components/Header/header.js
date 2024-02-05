@@ -1,5 +1,6 @@
 import './header.css'
 import mainMenuCleaner from '../../utils/mainMenuCleaner';
+import memorySwitch from '../Memory/memory';
 
 const headerTemplate = () => {
     const app = document.querySelector('#app');
@@ -16,7 +17,7 @@ const headerTemplate = () => {
 
     const chessButton = document.createElement('button');
     chessButton.className = 'rtc-header-games-button';
-    chessButton.classList.add('rtc-chess');
+    chessButton.classList.add('rtc-header-chess');
     chessButton.innerText = 'Chess';
     chessButton.addEventListener('click', (event) => {
         if (event.type === 'click') {
@@ -27,18 +28,13 @@ const headerTemplate = () => {
 
     const memoryButton = document.createElement('button');
     memoryButton.className = 'rtc-header-games-button';
-    memoryButton.classList.add('rtc-memory');
+    memoryButton.classList.add('rtc-header-memory');
     memoryButton.innerText = 'Memory';
-    memoryButton.addEventListener('click', (event) => {
-        if (event.type === 'click') {
-            console.log('Rendered Memory Board Test');
-            mainMenuCleaner('memory');
-        }
-    });
+    memoryButton.addEventListener('click', memorySwitch);
 
     const trivialButton = document.createElement('button');
     trivialButton.className = 'rtc-header-games-button';
-    trivialButton.classList.add('rtc-trivial');
+    trivialButton.classList.add('rtc-header-trivial');
     trivialButton.innerText = 'Trivial';
     trivialButton.addEventListener('click', (event) => {
         if (event.type === 'click') {

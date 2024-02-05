@@ -1,1 +1,34 @@
 @import '../../css/style.css';
+
+.rtc-memory--points_1,
+.rtc-memory--points_2 {
+  display: none;
+}
+
+.rtc-memory--board {
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  height: 18rem;
+}
+
+.rtc-memory--board-card {
+  background-color: #ac0101;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.rtc-memory--board-card:hover {
+  background-color: #ff5555;
+}
+
+@media screen and (min-width: 300px) {
+}
+
+@media screen and (min-width: 700px) {
+  .rtc-memory-game {
+    display: grid;
+    grid-template-columns: repeat(3, 25% 50% 25%);
+  }
+}

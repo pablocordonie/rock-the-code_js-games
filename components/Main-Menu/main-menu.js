@@ -1,5 +1,6 @@
 import './main-menu.css'
 import mainMenuCleaner from '../../utils/mainMenuCleaner';
+import memoryBoardTemplate from '../Memory/memory';
 
 const mainMenuTemplate = () => {
     const main = document.querySelector('#app');
@@ -29,12 +30,7 @@ const mainMenuTemplate = () => {
     memoryButton.className = 'rtc-welcome-games-button';
     memoryButton.classList.add('rtc-memory');
     memoryButton.innerText = 'Memory';
-    memoryButton.addEventListener('click', (event) => {
-        if (event.type === 'click') {
-            console.log('Rendered Memory Board Test');
-            mainMenuCleaner('memory');
-        }
-    });
+    memoryButton.addEventListener('click', memoryBoardTemplate);
 
     const trivialButton = document.createElement('button');
     trivialButton.className = 'rtc-welcome-games-button';
