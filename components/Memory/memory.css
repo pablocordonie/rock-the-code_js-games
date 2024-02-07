@@ -10,7 +10,8 @@
   grid-gap: 0.5rem;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  height: 18rem;
+  height: 19rem;
+  padding: 0 2rem;
 }
 
 .rtc-memory--board-card {
@@ -23,12 +24,73 @@
   background-color: #ff5555;
 }
 
-@media screen and (min-width: 300px) {
+@media screen and (min-width: 350px) {
+  .rtc-memory--board {
+    grid-gap: 0.6rem;
+    padding: 0 1.5rem;
+  }
+}
+
+@media screen and (min-height: 600px) {
+  .rtc-memory--board {
+    height: 24rem;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .rtc-memory--board {
+    height: 28rem;
+    padding: 0 2rem;
+  }
+}
+
+@media screen and (min-width: 450px) {
+  .rtc-memory--board {
+    grid-gap: 0.75rem;
+    height: 30rem;
+    padding: 0 3rem;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .rtc-memory--board {
+    padding: 0 5rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .rtc-memory--board {
+    grid-gap: 0.85rem;
+    padding: 0 7.5rem;
+  }
 }
 
 @media screen and (min-width: 700px) {
   .rtc-memory-game {
     display: grid;
     grid-template-columns: repeat(3, 25% 50% 25%);
+  }
+
+  .rtc-memory--board {
+    grid-gap: 1rem;
+    padding: 0 1rem;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .rtc-memory--board {
+    height: 32rem;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .rtc-memory--board {
+    height: 34rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .rtc-memory--board {
+    height: 36rem;
   }
 }
