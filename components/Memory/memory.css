@@ -14,16 +14,6 @@
   padding: 0 2rem;
 }
 
-.rtc-memory--board-card {
-  background-color: #ac0101;
-  border-radius: 0.5rem;
-  cursor: pointer;
-}
-
-.rtc-memory--board-card:hover {
-  background-color: #ff5555;
-}
-
 @media screen and (min-width: 350px) {
   .rtc-memory--board {
     grid-gap: 0.6rem;

@@ -1,5 +1,6 @@
 import './main-menu.css'
 import mainMenuCleaner from '../../utils/mainMenuCleaner';
+import memoryCardImages from '../../data/data';
 import memoryBoardTemplate from '../Memory/memory';
 
 const mainMenuTemplate = () => {
@@ -30,7 +31,7 @@ const mainMenuTemplate = () => {
     memoryButton.className = 'rtc-welcome-games-button';
     memoryButton.classList.add('rtc-memory');
     memoryButton.innerText = 'Memory';
-    memoryButton.addEventListener('click', memoryBoardTemplate);
+    memoryButton.addEventListener('click', (event) => memoryBoardTemplate(event, memoryCardImages));
 
     const trivialButton = document.createElement('button');
     trivialButton.className = 'rtc-welcome-games-button';

@@ -1,12 +1,13 @@
 import './memory.css'
 import mainMenuCleaner from '../../utils/mainMenuCleaner';
+import shuffleArray from '../../utils/shuffleArray';
+import cardTemplate from './Card/card';
 
-const memoryBoardTemplate = (event) => {
+const memoryBoardTemplate = (event, data) => {
     if (event.type === 'click') {
         mainMenuCleaner('memory');
 
         const memoryDiv = document.querySelector('.rtc-memory');
-        console.log(memoryDiv);
 
         const memoryGame = document.createElement('div');
         memoryGame.className = 'rtc-memory-game';
@@ -20,10 +21,9 @@ const memoryBoardTemplate = (event) => {
         const memoryPoints_2 = document.createElement('div');
         memoryPoints_2.className = 'rtc-memory--points_div2';
 
-        for (let i = 0; i <= 16; i++) {
-            const memoryCard = document.createElement('div');
-            memoryCard.className = 'rtc-memory--board-card';
-            memoryBoard.appendChild(memoryCard);
+        for (let i = 0; i <= 1; i++) {
+            data = shuffleArray(data);
+            data.forEach(cardImage => memoryBoard.appendChild(cardTemplate(cardImage)));
         }
 
         memoryGame.appendChild(memoryPoints_1);

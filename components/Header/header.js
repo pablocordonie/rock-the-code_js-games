@@ -1,6 +1,7 @@
 import './header.css'
 import mainMenuCleaner from '../../utils/mainMenuCleaner';
-import memorySwitch from '../Memory/memory';
+import memoryCardImages from '../../data/data';
+import memoryBoardTemplate from '../Memory/memory';
 
 const headerTemplate = () => {
     const app = document.querySelector('#app');
@@ -30,7 +31,7 @@ const headerTemplate = () => {
     memoryButton.className = 'rtc-header-games-button';
     memoryButton.classList.add('rtc-header-memory');
     memoryButton.innerText = 'Memory';
-    memoryButton.addEventListener('click', memorySwitch);
+    memoryButton.addEventListener('click', (event) => memoryBoardTemplate(event, memoryCardImages));
 
     const trivialButton = document.createElement('button');
     trivialButton.className = 'rtc-header-games-button';
