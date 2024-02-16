@@ -67,20 +67,22 @@
 
 @media screen and (min-height: 600px) {
   .rtc-header.open {
-    padding-bottom: 5rem;
+    padding-bottom: 4rem;
   }
 }
 
 @media screen and (min-width: 400px) {
-  .rtc-header.open {
-    padding-bottom: 4rem;
+  .rtc-header-h1 {
+    font-size: 1.75rem;
   }
+
   .rtc-header-games {
     gap: 1.25rem;
   }
+
   .rtc-header-games-button {
-    padding-left: 1.95rem;
-    padding-right: 1.95rem;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
   }
 }
 
@@ -103,7 +105,6 @@
     flex-direction: row;
     gap: 4.5rem;
     justify-content: center;
-    padding-bottom: 6rem;
   }
 
   .rtc-header-games-button {
@@ -115,7 +116,6 @@
 @media screen and (min-width: 900px) {
   .rtc-header.open {
     gap: 8rem;
-    padding-bottom: 5rem;
   }
 
   .rtc-header-games {

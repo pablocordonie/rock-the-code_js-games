@@ -7,6 +7,8 @@
   border-radius: 0.5rem;
   cursor: pointer;
   justify-content: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
 }
 
 .rtc-memory--board-card:hover {
@@ -14,11 +16,17 @@
 }
 
 .rtc-memory--board-card-img {
-  /*display: none;*/
+  display: flex;
+  visibility: hidden;
+  user-select: none;
   width: 2rem;
 }
 
-.selected-card {
+.rtc-memory--board-card.flipped {
   background-color: #ffffff;
-  display: block;
+  transform: rotateY(180deg);
+}
+
+.rtc-memory--board-card.flipped > .rtc-memory--board-card-img {
+  visibility: visible;
 }

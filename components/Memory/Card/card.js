@@ -8,8 +8,9 @@ const cardTemplate = (cardImage) => {
     memoryCardImg.className = 'rtc-memory--board-card-img';
     memoryCardImg.src = cardImage.src;
     memoryCardImg.alt = `${cardImage.name} image`;
-
+    memoryCardImg.setAttribute('draggable', 'false');
     memoryCard.appendChild(memoryCardImg);
+
     return memoryCard;
 };
 
