@@ -1,5 +1,16 @@
 @import '../../css/style.css';
 
+.rtc-memory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.rtc-memory-game {
+  align-self: normal;
+}
+
 .rtc-memory--points_1,
 .rtc-memory--points_2 {
   display: none;
@@ -29,7 +40,7 @@
 
 @media screen and (min-width: 400px) {
   .rtc-memory--board {
-    height: 28rem;
+    height: 26rem;
     padding: 0 2rem;
   }
 }
@@ -58,6 +69,19 @@
   .rtc-memory-game {
     display: grid;
     grid-template-columns: repeat(3, 27.5% 45% 27.5%);
+  }
+
+  .rtc-memory--points_div1,
+  .rtc-memory--points_div2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rtc-memory--points_div1-h3,
+  .rtc-memory--points_div2-h3 {
+    font-size: 4rem;
   }
 
   .rtc-memory--board {

@@ -1,6 +1,6 @@
 const mainMenuCleaner = (game) => {
     const header = document.querySelector('.rtc-header');
-    const mainContent = document.querySelector('#app > div');
+    const mainContent = document.querySelector('#app > main');
 
     mainContent.innerHTML = '';
     mainContent.className = `rtc-${game}`;

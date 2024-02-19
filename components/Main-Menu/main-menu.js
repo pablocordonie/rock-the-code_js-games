@@ -4,10 +4,10 @@ import memoryCardImages from '../../data/data';
 import memoryBoardTemplate from '../Memory/memory';
 
 const mainMenuTemplate = () => {
-    const main = document.querySelector('#app');
+    const app = document.querySelector('#app');
 
-    const welcomeDiv = document.createElement('div');
-    welcomeDiv.className = 'rtc-welcome';
+    const welcomeMain = document.createElement('main');
+    welcomeMain.className = 'rtc-welcome';
 
     const h1 = document.createElement('h1');
     h1.className = 'rtc-welcome-h1';
@@ -48,10 +48,10 @@ const mainMenuTemplate = () => {
     gamesDiv.appendChild(memoryButton);
     gamesDiv.appendChild(trivialButton);
 
-    welcomeDiv.appendChild(h1);
-    welcomeDiv.appendChild(gamesDiv);
+    welcomeMain.appendChild(h1);
+    welcomeMain.appendChild(gamesDiv);
 
-    main.appendChild(welcomeDiv);
+    app.appendChild(welcomeMain);
 };
 
 export default mainMenuTemplate;

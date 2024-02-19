@@ -1,1 +1,13 @@
 @import '../../css/style.css';
+
+.rtc-footer {
+  height: 12rem;
+}
+
+.rtc-footer-copyright {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: inherit;
+  justify-content: center;
+}

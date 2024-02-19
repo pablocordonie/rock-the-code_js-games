@@ -1,38 +1,52 @@
+const discoveredPairs = [];
 let flippedCards = [];
+let gameOver = false;
 
 export const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-const handleCardClick = async (event) => {
+const handleCardClick = async (event, data) => {
 
     const card = event.target;
 
-    card.classList.add('flipped');
-    flippedCards.push(card);
+    if (!gameOver) {
 
-    if (flippedCards.length === 2) {
-        const firstCardImage = flippedCards[0];
-        const secondCardImage = flippedCards[1];
+        card.classList.add('flipped');
+        flippedCards.push(card);
 
-        if (firstCardImage.firstChild.alt === secondCardImage.firstChild.alt) {
+        if (flippedCards.length === 2) {
 
-            // TO-DO: Sumar 1 punto al marcador del juego
+            const firstCardImage = flippedCards[0];
+            const secondCardImage = flippedCards[1];
 
-            console.log('Son 2 cartas idénticas!');
+            if (firstCardImage.firstChild.alt === secondCardImage.firstChild.alt) {
 
-            flippedCards = [];
-            console.log(flippedCards);
+                discoveredPairs.push(flippedCards);
 
-        } else {
+                const points_div1Number = document.querySelector('.rtc-memory--points_div1-h3');
+                points_div1Number.innerText = discoveredPairs.length;
 
-            await delay(1000);
+                const points_div2Number = document.querySelector('.rtc-memory--points_div2-h3');
+                points_div2Number.innerText = discoveredPairs.length;
 
-            flippedCards.forEach(flippedCard => {
-                flippedCard.classList.remove('flipped');
-            });
+                flippedCards = [];
 
-            flippedCards = [];
-            console.log(flippedCards);
+                if (discoveredPairs.length === data.length) {
+                    gameOver = true;
+                }
+
+            } else {
+
+                await delay(1000);
+
+                flippedCards.forEach(flippedCard => {
+                    flippedCard.classList.remove('flipped');
+                });
+
+                flippedCards = [];
+            }
         }
+    } else {
+        return;
     }
 };
 
