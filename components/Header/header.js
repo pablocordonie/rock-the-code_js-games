@@ -1,7 +1,8 @@
 import './header.css'
 import mainMenuCleaner from '../../utils/mainMenuCleaner';
+import checkersTemplate from '../Checkers/checkers';
 import memoryCardImages from '../../data/data';
-import memoryBoardTemplate from '../Memory/memory';
+import memoryTemplate from '../Memory/memory';
 
 const headerTemplate = () => {
     const app = document.querySelector('#app');
@@ -16,37 +17,32 @@ const headerTemplate = () => {
     const gamesDiv = document.createElement('div');
     gamesDiv.className = 'rtc-header-games';
 
-    const chessButton = document.createElement('button');
-    chessButton.className = 'rtc-header-games-button';
-    chessButton.classList.add('rtc-header-chess');
-    chessButton.innerText = 'Chess';
-    chessButton.addEventListener('click', (event) => {
-        if (event.type === 'click') {
-            console.log('Rendered Chess Board Test');
-            mainMenuCleaner('chess');
-        }
-    });
+    const checkersButton = document.createElement('button');
+    checkersButton.className = 'rtc-header-games-button';
+    checkersButton.classList.add('rtc-header-checkers');
+    checkersButton.innerText = 'Checkers';
+    checkersButton.addEventListener('click', checkersTemplate);
 
     const memoryButton = document.createElement('button');
     memoryButton.className = 'rtc-header-games-button';
     memoryButton.classList.add('rtc-header-memory');
     memoryButton.innerText = 'Memory';
-    memoryButton.addEventListener('click', (event) => memoryBoardTemplate(event, memoryCardImages));
+    memoryButton.addEventListener('click', (event) => memoryTemplate(event, memoryCardImages));
 
-    const trivialButton = document.createElement('button');
-    trivialButton.className = 'rtc-header-games-button';
-    trivialButton.classList.add('rtc-header-trivial');
-    trivialButton.innerText = 'Trivial';
-    trivialButton.addEventListener('click', (event) => {
+    const quizButton = document.createElement('button');
+    quizButton.className = 'rtc-header-games-button';
+    quizButton.classList.add('rtc-header-quiz');
+    quizButton.innerText = 'Quiz';
+    quizButton.addEventListener('click', (event) => {
         if (event.type === 'click') {
-            console.log('Rendered Trivial Board Test');
-            mainMenuCleaner('trivial');
+            console.log('Rendered Quiz Board Test');
+            mainMenuCleaner('quiz');
         }
     });
 
-    gamesDiv.appendChild(chessButton);
+    gamesDiv.appendChild(checkersButton);
     gamesDiv.appendChild(memoryButton);
-    gamesDiv.appendChild(trivialButton);
+    gamesDiv.appendChild(quizButton);
 
     header.appendChild(h1);
     header.appendChild(gamesDiv);

@@ -32,6 +32,9 @@ const handleCardClick = async (event, data) => {
 
                 if (discoveredPairs.length === data.length) {
                     gameOver = true;
+                    await delay(1000);
+                    points_div1Number.innerText = 'EPIC!!';
+                    points_div2Number.innerText = 'WIN!!';
                 }
 
             } else {

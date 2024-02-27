@@ -5,7 +5,7 @@ import cardTemplate from './Card/card';
 import handleCardClick from '../../utils/handleCardClick';
 import { delay } from '../../utils/handleCardClick';
 
-const memoryBoardTemplate = (event, data) => {
+const memoryTemplate = (event, data) => {
 
     if (event.type === 'click') {
         mainMenuCleaner('memory');
@@ -53,4 +53,4 @@ const memoryBoardTemplate = (event, data) => {
     }
 };
 
-export default memoryBoardTemplate;
+export default memoryTemplate;

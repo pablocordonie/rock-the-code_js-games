@@ -1,5 +1,7 @@
 @import '../../css/style.css';
 
+/* TO-DO: Refactor media queries for every viewport width */
+
 .rtc-memory {
   display: flex;
   flex-direction: column;
