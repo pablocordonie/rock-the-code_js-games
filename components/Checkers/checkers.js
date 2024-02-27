@@ -7,26 +7,34 @@ const generateBoard = () => {
     checkersBoard.className = 'rtc-checkers--board';
 
     for (let i = 0; i <= 3; i++) {
+        const checkersRow_1 = document.createElement('div');
+        checkersRow_1.className = 'rtc-checkers--board-row';
+        checkersBoard.appendChild(checkersRow_1);
+
         for (let j = 1; j <= 8; j++) {
-            const box = document.createElement('div');
-            box.className = 'rtc-checkers--board-box';
+            const checkersBox = document.createElement('div');
+            checkersBox.className = 'rtc-checkers--board-box';
             if (j % 2 === 0) {
-                box.classList.add('color1-box');
+                checkersBox.classList.add('color1-box');
             } else {
-                box.classList.add('color2-box');
+                checkersBox.classList.add('color2-box');
             }
-            checkersBoard.appendChild(box);
+            checkersRow_1.appendChild(checkersBox);
         }
 
+        const checkersRow_2 = document.createElement('div');
+        checkersRow_2.className = 'rtc-checkers--board-row';
+        checkersBoard.appendChild(checkersRow_2);
+
         for (let k = 1; k <= 8; k++) {
-            const box = document.createElement('div');
-            box.className = 'rtc-checkers--board-box';
+            const checkersBox = document.createElement('div');
+            checkersBox.className = 'rtc-checkers--board-box';
             if (k % 2 === 0) {
-                box.classList.add('color2-box');
+                checkersBox.classList.add('color2-box');
             } else {
-                box.classList.add('color1-box');
+                checkersBox.classList.add('color1-box');
             }
-            checkersBoard.appendChild(box);
+            checkersRow_2.appendChild(checkersBox);
         }
     }
 
