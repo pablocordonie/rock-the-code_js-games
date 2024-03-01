@@ -59,3 +59,8 @@
   background-color: red;
   border: 0.4rem double #000000;
 }
+
+.selected {
+  border: 0.15rem solid red;
+  cursor: pointer;
+}
