@@ -1,6 +1,8 @@
 import './main-menu.css'
-import memoryTemplate from '../Memory/memory';
+import mainMenuCleaner from '../../utils/mainMenuCleaner';
 import memoryCardImages from '../../data/data';
+import connect4Template from '../Connect-4/connect4';
+import memoryTemplate from '../Memory/memory';
 
 const mainMenuTemplate = () => {
     const app = document.querySelector('#app');
@@ -15,13 +17,32 @@ const mainMenuTemplate = () => {
     const gamesDiv = document.createElement('div');
     gamesDiv.className = 'rtc-welcome-games';
 
+    const connect4Button = document.createElement('button');
+    connect4Button.className = 'rtc-welcome-games-button';
+    connect4Button.classList.add('rtc-connect4');
+    connect4Button.innerText = 'Connect4';
+    connect4Button.addEventListener('click', connect4Template);
+
     const memoryButton = document.createElement('button');
     memoryButton.className = 'rtc-welcome-games-button';
     memoryButton.classList.add('rtc-memory');
     memoryButton.innerText = 'Memory';
     memoryButton.addEventListener('click', (event) => memoryTemplate(event, memoryCardImages));
 
+    const quizButton = document.createElement('button');
+    quizButton.className = 'rtc-welcome-games-button';
+    quizButton.classList.add('rtc-quiz');
+    quizButton.innerText = 'Quiz';
+    quizButton.addEventListener('click', (event) => {
+        if (event.type === 'click') {
+            console.log('Rendered Quiz Board Test');
+            mainMenuCleaner('quiz');
+        }
+    });
+
+    gamesDiv.appendChild(connect4Button);
     gamesDiv.appendChild(memoryButton);
+    gamesDiv.appendChild(quizButton);
 
     welcomeMain.appendChild(h1);
     welcomeMain.appendChild(gamesDiv);

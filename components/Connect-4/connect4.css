@@ -1,0 +1,58 @@
+@import '../../css/style.css';
+
+.rtc-connect4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.rtc-connect4-game {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.rtc-connect4--board {
+  display: flex;
+  flex-direction: column;
+  height: 26rem;
+  outline: 0.25rem solid navy;
+  width: 30rem;
+}
+
+.rtc-connect4--board-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  height: 100%;
+}
+
+.rtc-connect4--board-box {
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rtc-connect4--board-circle {
+  background-color: #ffffff;
+  border: 0.2rem solid navy;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 85%;
+  width: 85%;
+}
+
+.rtc-connect4--board-red_piece,
+.rtc-connect4--board-circle.rtc-connect4--board-red_piece:hover {
+  background-color: red;
+}
+
+.rtc-connect4--board-yellow_piece,
+.rtc-connect4--board-circle.rtc-connect4--board-yellow_piece:hover {
+  background-color: yellow;
+}
+
+.rtc-connect4--board-circle:hover {
+  background-color: skyblue;
+}
