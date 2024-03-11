@@ -1,1 +1,74 @@
 @import '../../css/style.css';
+
+.rtc-quiz-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12rem;
+  padding: 4rem 0 12rem 0;
+}
+
+.rtc-quiz-game.test {
+  flex-direction: row;
+  gap: 2rem;
+  padding-top: 1rem;
+}
+
+.rtc-quiz-description {
+  font-size: 2rem;
+}
+
+.rtc-quiz-play_button,
+.rtc-quiz-answer {
+  background-color: #ffffff;
+  border: 0.3rem solid #cc0000;
+  border-radius: 0.75rem;
+  color: #e60023;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.rtc-quiz-play_button,
+.rtc-quiz-answer {
+  padding: 1.25rem 4rem;
+}
+
+.rtc-quiz-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.rtc-quiz-answer {
+  display: flex;
+  gap: 2rem;
+}
+
+.rtc-quiz-play_button:hover,
+.rtc-quiz-answer:hover {
+  background-color: #cc0000;
+  color: #ffffff;
+}
+
+.correct {
+  background-color: linear-gradient(32deg, #0bdf24 0%, #29e86f 100%);
+  color: #ffffff;
+}
+
+.incorrect {
+  background-color: #cc0000;
+  color: #ffffff;
+}
+
+/* HUD */
+
+.rtc-quiz-hud_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}

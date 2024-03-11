@@ -1,8 +1,8 @@
 import './main-menu.css'
-import mainMenuCleaner from '../../utils/mainMenuCleaner';
 import memoryCardImages from '../../data/data';
 import connect4Template from '../Connect-4/connect4';
 import memoryTemplate from '../Memory/memory';
+import quizTemplate from '../Quiz/quiz';
 
 const mainMenuTemplate = () => {
     const app = document.querySelector('#app');
@@ -33,12 +33,7 @@ const mainMenuTemplate = () => {
     quizButton.className = 'rtc-welcome-games-button';
     quizButton.classList.add('rtc-quiz');
     quizButton.innerText = 'Quiz';
-    quizButton.addEventListener('click', (event) => {
-        if (event.type === 'click') {
-            console.log('Rendered Quiz Board Test');
-            mainMenuCleaner('quiz');
-        }
-    });
+    quizButton.addEventListener('click', quizTemplate);
 
     gamesDiv.appendChild(connect4Button);
     gamesDiv.appendChild(memoryButton);
