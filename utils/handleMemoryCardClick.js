@@ -4,7 +4,7 @@ let gameOver = false;
 
 export const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-const handleCardClick = async (event, data) => {
+const handleMemoryCardClick = async (event, data) => {
 
     const card = event.target;
 
@@ -53,4 +53,4 @@ const handleCardClick = async (event, data) => {
     }
 };
 
-export default handleCardClick;
+export default handleMemoryCardClick;

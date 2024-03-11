@@ -5,8 +5,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12rem;
-  padding: 4rem 0 12rem 0;
+  gap: 8rem;
+  padding: 8rem 0 12rem 0;
 }
 
 .rtc-quiz-game.test {

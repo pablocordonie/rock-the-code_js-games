@@ -2,8 +2,8 @@ import './memory.css'
 import mainMenuCleaner from '../../utils/mainMenuCleaner';
 import shuffleArray from '../../utils/shuffleArray';
 import cardTemplate from './Card/card';
-import handleCardClick from '../../utils/handleCardClick';
-import { delay } from '../../utils/handleCardClick';
+import handleMemoryCardClick from '../../utils/handleMemoryCardClick';
+import { delay } from '../../utils/handleMemoryCardClick';
 
 const memoryTemplate = (event, data) => {
 
@@ -17,7 +17,7 @@ const memoryTemplate = (event, data) => {
 
         const memoryGameDescription = document.createElement('h2');
         memoryGameDescription.className = 'rtc-memory-description';
-        memoryGameDescription.innerText = 'Encuentra las 8 parejas';
+        memoryGameDescription.innerText = 'Find the 8 pairs';
 
         const memoryBoard = document.createElement('div');
         memoryBoard.className = 'rtc-memory--board';
@@ -32,7 +32,7 @@ const memoryTemplate = (event, data) => {
 
         memoryBoard.addEventListener('click', (event) => {
             if (event.target.classList.contains('rtc-memory--board-card')) {
-                handleCardClick(event, data);
+                handleMemoryCardClick(event, data);
             }
         });
 
