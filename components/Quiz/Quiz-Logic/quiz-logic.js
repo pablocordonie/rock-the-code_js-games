@@ -1,36 +1,69 @@
+import he from 'he';
 import shuffleAnswersArray from '../../../utils/shuffleArray';
-import { delay } from '../../../utils/handleMemoryCardClick';
 
-const questionCardBuilder = async () => {
-    const answersArray = [];
-    delay(500);
-    const question = await fetch('https://opentdb.com/api.php?amount=1&difficulty=easy&type=multiple').then((res) => res.json()).then((res) => res.results[0]).catch(error => console.log(error));
-    console.log(question);
+//let allCorrectAnswers = true;
+let availableCards = [];
+//let currentCard = {};
+let questionCounter = 0;
+//let score = 0;
 
-    const questionCard = {
-        question: '',
-        firstAnswer: '',
-        secondAnswer: '',
-        thirdAnswer: '',
-        fourthAnswer: ''
-    };
+//const MAX_SCORE_POINTS = 100;
+const MAX_QUESTIONS = 10;
 
-    answersArray.push(question.correct_answer);
-    for (let i = 0; i <= 2; i++) {
-        answersArray.push(question.incorrect_answers[i]);
+const questionsCardsBuilder = async () => {
+    let answersArray = [];
+    const questionsCards = [];
+    let questionCard = {};
+
+    const questionsArray = await fetch('https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple').then((res) => res.json()).then((res) => res.results).catch(error => console.log(error));
+
+    for (let i = 0; i <= questionsArray.length - 1; i++) {
+        const questionFromArray = questionsArray[i];
+
+        answersArray.push(questionFromArray.correct_answer);
+        for (let j = 0; j <= 2; j++) {
+            answersArray.push(questionFromArray.incorrect_answers[j]);
+        }
+
+        const shuffledAnswersArray = shuffleAnswersArray(answersArray);
+
+        questionCard = {
+            question: questionFromArray.question,
+            firstAnswer: shuffledAnswersArray[0],
+            secondAnswer: shuffledAnswersArray[1],
+            thirdAnswer: shuffledAnswersArray[2],
+            fourthAnswer: shuffledAnswersArray[3]
+        };
+
+        questionsCards.push(questionCard);
+
+        answersArray = [];
+        questionCard = {};
     }
 
-    const shuffledAnswersArray = shuffleAnswersArray(answersArray);
+    return questionsCards;
+};
 
-    questionCard.question = question.question;
-    questionCard.firstAnswer = shuffledAnswersArray[0];
-    questionCard.secondAnswer = shuffledAnswersArray[1];
-    questionCard.thirdAnswer = shuffledAnswersArray[2];
-    questionCard.fourthAnswer = shuffledAnswersArray[3];
+const getNewQuestion = (progressText, questionTitle, answersTexts) => {
+    const answers = Array.from(answersTexts.children);
+    questionCounter++;
 
-    console.log(questionCard);
-    return questionCard;
-}
-const quizLogic = () => questionCardBuilder();
+    progressText.innerText = `${questionCounter} / ${MAX_QUESTIONS}`;
+
+    questionTitle.innerText = he.decode(availableCards[0].question);
+
+    answers[0].firstChild.innerText = he.decode(availableCards[0].firstAnswer);
+    answers[1].firstChild.innerText = he.decode(availableCards[0].secondAnswer);
+    answers[2].firstChild.innerText = he.decode(availableCards[0].thirdAnswer);
+    answers[3].firstChild.innerText = he.decode(availableCards[0].fourthAnswer);
+};
+
+const quizLogic = async (progressText, questionTitle, answersTexts) => {
+    availableCards = await questionsCardsBuilder();
+
+    if (availableCards) {
+        getNewQuestion(progressText, questionTitle, answersTexts);
+    }
+};
 
 export default quizLogic;

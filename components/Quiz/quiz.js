@@ -2,35 +2,6 @@ import './quiz.css'
 import mainMenuCleaner from '../../utils/mainMenuCleaner';
 import quizLogic from './Quiz-Logic/quiz-logic';
 
-const quizCardTemplate = () => {
-
-    const quizCard = document.createElement('div');
-    quizCard.className = 'rtc-quiz-card';
-
-    const quizQuestion = document.createElement('h3');
-    quizQuestion.className = 'rtc-quiz-card-question';
-    quizQuestion.id = 'question';
-    quizQuestion.innerText = 'What is the answer to this question?';
-    quizCard.appendChild(quizQuestion);
-
-    for (let i = 0; i <= 3; i++) {
-        const quizAnswerContainer = document.createElement('div');
-        quizAnswerContainer.className = 'rtc-quiz-answer';
-        quizAnswerContainer.id = `answer_${i + 1}`;
-
-        const quizAnswerText = document.createElement('p');
-        quizAnswerText.className = 'rtc-quiz-answer_text';
-        quizAnswerText.id = 'answer';
-        quizAnswerText.setAttribute('data-number', `${i + 1}`);
-        quizAnswerText.innerText = `Answer ${i + 1}`;
-
-        quizAnswerContainer.appendChild(quizAnswerText);
-        quizCard.appendChild(quizAnswerContainer);
-    }
-
-    return quizCard;
-};
-
 const quizTestTemplate = (event) => {
 
     mainMenuCleaner('quiz');
@@ -51,14 +22,40 @@ const quizTestTemplate = (event) => {
     const quizHudProgress = document.createElement('p');
     quizHudProgress.className = 'rtc-quiz-hud_item-progress';
     quizHudProgress.id = 'questions-progress';
-    quizHudProgress.innerText = '1 / 10';
+    quizHudProgress.innerText = ' / 10';
+
+    const quizCard = document.createElement('div');
+    quizCard.className = 'rtc-quiz-card';
+
+    const quizQuestion = document.createElement('h3');
+    quizQuestion.className = 'rtc-quiz-card-question';
+    quizQuestion.id = 'question';
+    quizQuestion.innerText = '-';
+
+    const quizAnswersContainer = document.createElement('div');
+    quizAnswersContainer.className = 'rtc-quiz-card-answers';
+
+    for (let i = 0; i <= 3; i++) {
+
+        const quizAnswer = document.createElement('div');
+        quizAnswer.className = 'rtc-quiz-card-answer';
+
+        const quizAnswerText = document.createElement('p');
+        quizAnswerText.className = 'rtc-quiz-answer_text';
+        quizAnswerText.id = 'answer';
+        quizAnswerText.setAttribute('data-number', `${i + 1}`);
+        quizAnswerText.innerText = '-';
+
+        quizAnswer.appendChild(quizAnswerText);
+        quizAnswersContainer.appendChild(quizAnswer);
+    }
 
     const quizHudItem_2 = document.createElement('div');
     quizHudItem_2.className = 'rtc-quiz-hud_item';
 
     const quizHudPrefix_2 = document.createElement('h3');
     quizHudPrefix_2.className = 'rtc-quiz-hud_item-prefix';
-    quizHudPrefix_2.innerText = 'Total Score';
+    quizHudPrefix_2.innerText = 'Score';
 
     const quizScore = document.createElement('p');
     quizScore.className = 'rtc-quiz-hud_item-score';
@@ -68,15 +65,18 @@ const quizTestTemplate = (event) => {
     quizHudItem_1.appendChild(quizHudPrefix_1);
     quizHudItem_1.appendChild(quizHudProgress);
 
+    quizCard.appendChild(quizQuestion);
+    quizCard.appendChild(quizAnswersContainer);
+
     quizHudItem_2.appendChild(quizHudPrefix_2);
     quizHudItem_2.appendChild(quizScore);
 
     quizGame.appendChild(quizHudItem_1);
-    quizGame.appendChild(quizCardTemplate());
+    quizGame.appendChild(quizCard);
     quizGame.appendChild(quizHudItem_2);
 
     quizMain.appendChild(quizGame);
-    quizLogic();
+    quizLogic(quizHudProgress, quizQuestion, quizAnswersContainer);
 };
 
 const quizTemplate = (event) => {
