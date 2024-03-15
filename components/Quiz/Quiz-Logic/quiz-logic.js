@@ -1,68 +1,81 @@
 import he from 'he';
 import shuffleAnswersArray from '../../../utils/shuffleArray';
+import { delay as timer } from '../../../utils/handleMemoryCardClick';
 
-//let allCorrectAnswers = true;
-let availableCards = [];
-//let currentCard = {};
-let questionCounter = 0;
-//let score = 0;
+let allCorrectAnswers = true;
+let availableQuestions = [];
+let currentQuestion = {};
+let questionsCounter = 0;
+let score = 0;
 
-//const MAX_SCORE_POINTS = 100;
-const MAX_QUESTIONS = 10;
+const SCORE_POINTS = 100;
+const MAX_QUESTIONS = 3;
 
-const questionsCardsBuilder = async () => {
+const getCardsInfo = async () => {
     let answersArray = [];
     const questionsCards = [];
-    let questionCard = {};
+    let currentCard = {};
 
-    const questionsArray = await fetch('https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple').then((res) => res.json()).then((res) => res.results).catch(error => console.log(error));
+    const questionsArray = await fetch(`https://opentdb.com/api.php?amount=${MAX_QUESTIONS}&difficulty=easy&type=multiple`).then((res) => res.json()).then((res) => res.results).catch(error => console.log(error));
 
-    for (let i = 0; i <= questionsArray.length - 1; i++) {
-        const questionFromArray = questionsArray[i];
+    for (let i = 0; i < MAX_QUESTIONS; i++) {
 
-        answersArray.push(questionFromArray.correct_answer);
+        answersArray.push(questionsArray[i].correct_answer);
         for (let j = 0; j <= 2; j++) {
-            answersArray.push(questionFromArray.incorrect_answers[j]);
+            answersArray.push(questionsArray[i].incorrect_answers[j]);
         }
 
         const shuffledAnswersArray = shuffleAnswersArray(answersArray);
 
-        questionCard = {
-            question: questionFromArray.question,
+        currentCard = {
+            question: questionsArray[i].question,
+            correctAnswer: questionsArray[i].correct_answer,
             firstAnswer: shuffledAnswersArray[0],
             secondAnswer: shuffledAnswersArray[1],
             thirdAnswer: shuffledAnswersArray[2],
             fourthAnswer: shuffledAnswersArray[3]
         };
 
-        questionsCards.push(questionCard);
+        questionsCards.push(currentCard);
 
         answersArray = [];
-        questionCard = {};
+        currentCard = {};
     }
 
     return questionsCards;
 };
 
-const getNewQuestion = (progressText, questionTitle, answersTexts) => {
-    const answers = Array.from(answersTexts.children);
-    questionCounter++;
+const getNewQuestion = async (progressText, questionTitle, answersContainer, scoreText) => {
+    if (availableQuestions.length === 0 || questionsCounter > MAX_QUESTIONS) {
+        localStorage.setItem('lastScore', score);
+    };
 
-    progressText.innerText = `${questionCounter} / ${MAX_QUESTIONS}`;
+    const answers = Array.from(answersContainer.children);
+    const correctAnswer = he.decode(availableQuestions[questionsCounter].correctAnswer);
 
-    questionTitle.innerText = he.decode(availableCards[0].question);
+    progressText.innerText = `${questionsCounter + 1} / ${MAX_QUESTIONS}`;
 
-    answers[0].firstChild.innerText = he.decode(availableCards[0].firstAnswer);
-    answers[1].firstChild.innerText = he.decode(availableCards[0].secondAnswer);
-    answers[2].firstChild.innerText = he.decode(availableCards[0].thirdAnswer);
-    answers[3].firstChild.innerText = he.decode(availableCards[0].fourthAnswer);
+    questionTitle.innerText = he.decode(availableQuestions[questionsCounter].question);
+
+    answers[0].firstChild.innerText = he.decode(availableQuestions[questionsCounter].firstAnswer);
+    answers[1].firstChild.innerText = he.decode(availableQuestions[questionsCounter].secondAnswer);
+    answers[2].firstChild.innerText = he.decode(availableQuestions[questionsCounter].thirdAnswer);
+    answers[3].firstChild.innerText = he.decode(availableQuestions[questionsCounter].fourthAnswer);
+
+    scoreText.innerText = score;
+
+    console.log(correctAnswer);
 };
 
-const quizLogic = async (progressText, questionTitle, answersTexts) => {
-    availableCards = await questionsCardsBuilder();
+const quizLogic = async (progressText, questionTitle, answersContainer, scoreText) => {
+    questionsCounter = 0;
+    score = 0;
+    availableQuestions = await getCardsInfo();
 
-    if (availableCards) {
-        getNewQuestion(progressText, questionTitle, answersTexts);
+    for (let i = 0; i < availableQuestions.length; i++) {
+        getNewQuestion(progressText, questionTitle, answersContainer, scoreText);
+        await timer(5000);
+        questionsCounter++;
     }
 };
 

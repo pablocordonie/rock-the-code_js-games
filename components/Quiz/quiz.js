@@ -21,8 +21,8 @@ const quizTestTemplate = (event) => {
 
     const quizHudProgress = document.createElement('p');
     quizHudProgress.className = 'rtc-quiz-hud_item-progress';
-    quizHudProgress.id = 'questions-progress';
-    quizHudProgress.innerText = ' / 10';
+    quizHudProgress.id = 'progress';
+    quizHudProgress.innerText = '- / -';
 
     const quizCard = document.createElement('div');
     quizCard.className = 'rtc-quiz-card';
@@ -39,10 +39,10 @@ const quizTestTemplate = (event) => {
 
         const quizAnswer = document.createElement('div');
         quizAnswer.className = 'rtc-quiz-card-answer';
+        quizAnswer.id = 'answer';
 
         const quizAnswerText = document.createElement('p');
         quizAnswerText.className = 'rtc-quiz-answer_text';
-        quizAnswerText.id = 'answer';
         quizAnswerText.setAttribute('data-number', `${i + 1}`);
         quizAnswerText.innerText = '-';
 
@@ -76,7 +76,7 @@ const quizTestTemplate = (event) => {
     quizGame.appendChild(quizHudItem_2);
 
     quizMain.appendChild(quizGame);
-    quizLogic(quizHudProgress, quizQuestion, quizAnswersContainer);
+    quizLogic(quizHudProgress, quizQuestion, quizAnswersContainer, quizScore);
 };
 
 const quizTemplate = (event) => {
