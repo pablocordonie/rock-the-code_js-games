@@ -68,7 +68,8 @@
 }
 
 .correct {
-  background-color: linear-gradient(32deg, #0bdf24 0%, #29e86f 100%);
+  background: linear-gradient(32deg, #0bdf24 0%, #29e86f 100%);
+  border-color: #0bdf24;
   color: #ffffff;
 }
 

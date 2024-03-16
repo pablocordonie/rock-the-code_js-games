@@ -2,14 +2,15 @@ import he from 'he';
 import shuffleAnswersArray from '../../../utils/shuffleArray';
 import { delay as timer } from '../../../utils/handleMemoryCardClick';
 
-let allCorrectAnswers = true;
+let acceptedAnswers = true;
 let availableQuestions = [];
-let currentQuestion = {};
+let correctAnswer = '';
+let unselectedCorrectAnswer = '';
 let questionsCounter = 0;
 let score = 0;
 
 const SCORE_POINTS = 100;
-const MAX_QUESTIONS = 3;
+const MAX_QUESTIONS = 5;
 
 const getCardsInfo = async () => {
     let answersArray = [];
@@ -45,26 +46,81 @@ const getCardsInfo = async () => {
     return questionsCards;
 };
 
-const getNewQuestion = async (progressText, questionTitle, answersContainer, scoreText) => {
+const getNewQuestion = (progressText, questionTitle, answers, scoreText) => {
     if (availableQuestions.length === 0 || questionsCounter > MAX_QUESTIONS) {
         localStorage.setItem('lastScore', score);
+        console.log('No hay más preguntas, señoría!');
+        // TO-DO: Crear la vista de endgame
+        return;
     };
 
-    const answers = Array.from(answersContainer.children);
-    const correctAnswer = he.decode(availableQuestions[questionsCounter].correctAnswer);
+    correctAnswer = he.decode(availableQuestions[0].correctAnswer);
 
-    progressText.innerText = `${questionsCounter + 1} / ${MAX_QUESTIONS}`;
+    questionsCounter++;
+    progressText.innerText = `${questionsCounter} / ${MAX_QUESTIONS}`;
 
-    questionTitle.innerText = he.decode(availableQuestions[questionsCounter].question);
+    questionTitle.innerText = he.decode(availableQuestions[0].question);
 
-    answers[0].firstChild.innerText = he.decode(availableQuestions[questionsCounter].firstAnswer);
-    answers[1].firstChild.innerText = he.decode(availableQuestions[questionsCounter].secondAnswer);
-    answers[2].firstChild.innerText = he.decode(availableQuestions[questionsCounter].thirdAnswer);
-    answers[3].firstChild.innerText = he.decode(availableQuestions[questionsCounter].fourthAnswer);
+    answers[0].firstChild.innerText = he.decode(availableQuestions[0].firstAnswer);
+    answers[1].firstChild.innerText = he.decode(availableQuestions[0].secondAnswer);
+    answers[2].firstChild.innerText = he.decode(availableQuestions[0].thirdAnswer);
+    answers[3].firstChild.innerText = he.decode(availableQuestions[0].fourthAnswer);
 
     scoreText.innerText = score;
 
-    console.log(correctAnswer);
+    unselectedCorrectAnswer = answers.find(answer => answer.firstChild.innerText === correctAnswer);
+
+    availableQuestions.splice(0, 1);
+    acceptedAnswers = true;
+};
+
+const addListenersToAnswers = (progressText, questionTitle, answers, scoreText) => {
+
+    answers.forEach(answer => {
+        answer.addEventListener('click', async (event) => {
+            if (!acceptedAnswers) {
+                return;
+            }
+
+            acceptedAnswers = false;
+            const selectedAnswer = event.target;
+
+            let classToApply = selectedAnswer.innerText === correctAnswer ? 'correct' : 'incorrect';
+
+            if (classToApply === 'correct') {
+                incrementScore(SCORE_POINTS, scoreText);
+                if (selectedAnswer.localName === 'p') {
+                    selectedAnswer.parentElement.classList.add(classToApply);
+                    await timer(5000);
+                    selectedAnswer.parentElement.classList.remove(classToApply);
+                } else {
+                    selectedAnswer.classList.add(classToApply);
+                    await timer(5000);
+                    selectedAnswer.classList.remove(classToApply);
+                }
+            } else {
+                if (selectedAnswer.localName === 'p') {
+                    selectedAnswer.parentElement.classList.add(classToApply);
+                    unselectedCorrectAnswer.classList.add('correct');
+                    await timer(5000);
+                    selectedAnswer.parentElement.classList.remove(classToApply);
+                    unselectedCorrectAnswer.classList.remove('correct');
+                } else {
+                    selectedAnswer.classList.add(classToApply);
+                    unselectedCorrectAnswer.classList.add('correct');
+                    await timer(5000);
+                    selectedAnswer.classList.remove(classToApply);
+                    unselectedCorrectAnswer.classList.remove('correct');
+                }
+            }
+            getNewQuestion(progressText, questionTitle, answers, scoreText);
+        });
+    });
+};
+
+const incrementScore = (scorePoints, scoreText) => {
+    score += scorePoints;
+    scoreText.innerText = score;
 };
 
 const quizLogic = async (progressText, questionTitle, answersContainer, scoreText) => {
@@ -72,11 +128,10 @@ const quizLogic = async (progressText, questionTitle, answersContainer, scoreTex
     score = 0;
     availableQuestions = await getCardsInfo();
 
-    for (let i = 0; i < availableQuestions.length; i++) {
-        getNewQuestion(progressText, questionTitle, answersContainer, scoreText);
-        await timer(5000);
-        questionsCounter++;
-    }
+    const answers = Array.from(answersContainer.children);
+
+    getNewQuestion(progressText, questionTitle, answers, scoreText);
+    addListenersToAnswers(progressText, questionTitle, answers, scoreText);
 };
 
 export default quizLogic;

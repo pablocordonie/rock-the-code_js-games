@@ -43,7 +43,6 @@ const quizTestTemplate = (event) => {
 
         const quizAnswerText = document.createElement('p');
         quizAnswerText.className = 'rtc-quiz-answer_text';
-        quizAnswerText.setAttribute('data-number', `${i + 1}`);
         quizAnswerText.innerText = '-';
 
         quizAnswer.appendChild(quizAnswerText);
