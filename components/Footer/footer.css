@@ -1,13 +1,33 @@
 @import '../../css/style.css';
 
 .rtc-footer {
-  height: 12rem;
+  padding: 4rem 0;
 }
 
-.rtc-footer-copyright {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: inherit;
-  justify-content: center;
+.rtc-footer-copyright-p {
+  font-size: 0.8rem;
+}
+
+@media screen and (min-width: 360px) {
+  .rtc-footer {
+    padding-top: 8rem;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .rtc-footer-copyright-p {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .rtc-footer-copyright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .rtc-footer-copyright-p {
+    font-size: 1rem;
+  }
 }

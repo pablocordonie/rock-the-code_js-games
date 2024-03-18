@@ -4,21 +4,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
+  padding-bottom: 4rem;
+  width: 100%;
+}
+
+.rtc-connect4-description {
+  font-size: 1rem;
 }
 
 .rtc-connect4-game {
   display: flex;
   justify-content: center;
   gap: 1rem;
+  width: inherit;
 }
 
 .rtc-connect4--board {
+  border: 0.25rem solid navy;
   display: flex;
   flex-direction: column;
-  height: 26rem;
-  outline: 0.25rem solid navy;
-  width: 30rem;
+  height: 16rem;
+  width: inherit;
 }
 
 .rtc-connect4--board-row {
@@ -55,4 +62,106 @@
 
 .rtc-connect4--board-circle:hover {
   background-color: skyblue;
+}
+
+@media screen and (min-width: 320px) {
+  .rtc-connect4--board {
+    height: 17rem;
+  }
+}
+
+@media screen and (min-width: 360px) {
+  .rtc-connect4 {
+    gap: 2rem;
+    padding-bottom: 8rem;
+  }
+
+  .rtc-connect4--board {
+    height: 18.5rem;
+  }
+}
+
+@media screen and (min-width: 390px) {
+  .rtc-connect4--board {
+    height: 20rem;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .rtc-connect4-description {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .rtc-connect4--board {
+    height: 22rem;
+  }
+}
+
+@media screen and (min-width: 540px) {
+  .rtc-connect4-game {
+    padding: 0 2rem;
+  }
+
+  .rtc-connect4-description {
+    font-size: 1.5rem;
+  }
+
+  .rtc-connect4--board {
+    height: 24rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .rtc-connect4-game {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .rtc-connect4-description {
+    font-size: 1.5rem;
+  }
+
+  .rtc-connect4--board {
+    height: 26rem;
+    width: 30rem;
+  }
+
+  .rtc-connect4--board-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    height: 100%;
+  }
+
+  .rtc-connect4--board-box {
+    background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rtc-connect4--board-circle {
+    background-color: #ffffff;
+    border: 0.2rem solid navy;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 85%;
+    width: 85%;
+  }
+
+  .rtc-connect4--board-red_piece,
+  .rtc-connect4--board-circle.rtc-connect4--board-red_piece:hover {
+    background-color: red;
+  }
+
+  .rtc-connect4--board-yellow_piece,
+  .rtc-connect4--board-circle.rtc-connect4--board-yellow_piece:hover {
+    background-color: yellow;
+  }
+
+  .rtc-connect4--board-circle:hover {
+    background-color: skyblue;
+  }
 }

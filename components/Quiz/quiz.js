@@ -89,7 +89,7 @@ const quizTemplate = (event) => {
 
         const quizGameDescription = document.createElement('h2');
         quizGameDescription.className = 'rtc-quiz-description';
-        quizGameDescription.innerText = 'It is time for a Quiz!';
+        quizGameDescription.innerText = 'Are you ready for a Quiz?';
 
         const quizPlayButton = document.createElement('button');
         quizPlayButton.className = 'rtc-quiz-play_button';

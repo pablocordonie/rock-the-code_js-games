@@ -6,7 +6,7 @@
   align-items: center;
   gap: 4rem;
   height: 100svh;
-  justify-content: center;
+  padding: 2.5rem 0;
 }
 
 .rtc-welcome-h1 {
@@ -34,6 +34,13 @@
 .rtc-welcome-games-button:hover {
   background-color: #cc0000;
   color: #ffffff;
+}
+
+@media screen and (min-width: 360px) {
+  .rtc-welcome {
+    height: 90svh;
+    padding: 8rem 0 0 0;
+  }
 }
 
 @media screen and (min-width: 500px) {

@@ -1,4 +1,4 @@
-const mainMenuCleaner = (game) => {
+export const mainMenuCleaner = (game) => {
     const header = document.querySelector('.rtc-header');
     const mainContent = document.querySelector('#app > main');
 
