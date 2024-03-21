@@ -42,7 +42,7 @@ const quizTestTemplate = (event) => {
         quizAnswer.id = 'answer';
 
         const quizAnswerText = document.createElement('p');
-        quizAnswerText.className = 'rtc-quiz-answer_text';
+        quizAnswerText.className = 'rtc-quiz-card-answer_text';
         quizAnswerText.innerText = '-';
 
         quizAnswer.appendChild(quizAnswerText);

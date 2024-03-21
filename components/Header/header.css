@@ -9,8 +9,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 0 1.5rem 0;
-  width: 100%;
+  padding: 1rem 0 2rem 0;
 }
 
 .rtc-header-h1 {
@@ -21,8 +20,6 @@
 .rtc-header-games {
   display: flex;
   gap: 0.75rem;
-  justify-content: center;
-  width: inherit;
 }
 
 .rtc-header-games-button {
@@ -35,7 +32,7 @@
   font-size: 0.75rem;
   font-weight: 700;
   padding: 0.5rem;
-  width: 27.5%;
+  width: 5rem;
 }
 
 .rtc-header-games-button:hover {
@@ -44,21 +41,22 @@
 }
 
 @media screen and (min-width: 300px) {
-  .rtc-header-games {
-    gap: 1rem;
+  .rtc-header.open {
+    padding-top: 2rem;
+  }
+
+  .rtc-header-games-button {
+    width: 5.5rem;
   }
 }
 
 @media screen and (min-width: 360px) {
   .rtc-header.open {
     gap: 2rem;
-    padding-top: 2rem;
   }
-}
 
-@media screen and (min-height: 600px) {
-  .rtc-header.open {
-    padding-bottom: 2rem;
+  .rtc-header-games {
+    gap: 1.25rem;
   }
 }
 
@@ -67,74 +65,74 @@
     font-size: 1.5rem;
   }
 
-  .rtc-header-games {
-    gap: 1.25rem;
-  }
-
   .rtc-header-games-button {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    width: 6.5rem;
   }
 }
 
-@media screen and (min-width: 540px) {
-  .rtc-header.open {
-    padding-bottom: 2rem;
-  }
-
-  .rtc-header-h1 {
-    font-size: 1.75rem;
-  }
-
+@media screen and (min-width: 500px) {
   .rtc-header-games {
     gap: 2rem;
   }
 
   .rtc-header-games-button {
-    font-size: 1rem;
-    width: 25%;
+    width: 7.5rem;
   }
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   .rtc-header.open {
     flex-direction: row;
-    gap: 4.5rem;
-    justify-content: center;
+    width: 100%;
   }
 
-  .rtc-header-games-button {
-    font-size: 0.9rem;
-    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  .rtc-header-h1 {
+    text-align: center;
+    width: inherit;
   }
 }
 
 @media screen and (min-width: 900px) {
   .rtc-header.open {
-    gap: 8rem;
+    gap: 4rem;
   }
 
   .rtc-header-games {
-    gap: 2.5rem;
-  }
-
-  .rtc-header-games-button {
-    font-size: 0.9rem;
-    padding: 0.75rem 2.5rem 0.75rem 2.5rem;
+    padding-right: 4rem;
   }
 }
 
-@media screen and (min-width: 950px) {
+@media screen and (min-width: 1000px) {
   .rtc-header.open {
-    padding-bottom: 4rem;
+    gap: 8rem;
   }
 }
 
 @media screen and (min-width: 1100px) {
   .rtc-header.open {
+    gap: 10rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .rtc-header.open {
+    gap: 12rem;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .rtc-header.open {
     gap: 16rem;
   }
 
   .rtc-header-games {
-    gap: 4rem;
+    padding-right: 8rem;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .rtc-header.open {
+    gap: 64rem;
   }
 }

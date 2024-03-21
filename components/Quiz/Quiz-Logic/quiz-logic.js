@@ -1,7 +1,7 @@
 import he from 'he';
 import { mainMenuCleaner as cleaner } from '../../../utils/mainMenuCleaner';
 import shuffleAnswersArray from '../../../utils/shuffleArray';
-import { delay as timer } from '../../../utils/handleMemoryCardClick';
+import { delay as timer } from '../../../utils/delay';
 
 let acceptedAnswers = true;
 let availableQuestions = [];
@@ -73,7 +73,7 @@ const saveHighScore = (event) => {
         <div class="rtc-quiz-endgame-ranking">
             <h2 class="rtc-quiz-endgame-ranking_title">Ranking</h2>
             <div class="rtc-quiz-endgame-ranking_scores"></div>
-            <h3 class="rtc-quiz-endgame-ranking_message">Thanks for Playing! :)</h3>
+            <h3 class="rtc-quiz-endgame-ranking_message">Thanks for Playing! 😃️</h3>
         </div>
     `;
 

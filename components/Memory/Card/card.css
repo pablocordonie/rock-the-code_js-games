@@ -1,5 +1,7 @@
 @import '../../../css/style.css';
 
+/* TO-DO: Refactor media queries for every viewport width */
+
 .rtc-memory--board-card {
   display: flex;
   align-items: center;

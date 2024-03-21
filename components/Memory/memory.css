@@ -1,111 +1,157 @@
 @import '../../css/style.css';
 
-/* TO-DO: Refactor media queries for every viewport width */
-
 .rtc-memory {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1.25rem;
+}
+
+.rtc-memory-description {
+  font-size: 1rem;
+}
+
+.rtc-memory--points {
+  font-size: 1.1rem;
+}
+
+.rtc-memory--points {
+  display: flex;
+  flex-direction: column;
 }
 
 .rtc-memory-game {
-  align-self: normal;
-}
-
-.rtc-memory--points_1,
-.rtc-memory--points_2 {
-  display: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .rtc-memory--board {
   display: grid;
   grid-gap: 0.5rem;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  height: 18rem;
-  padding: 0 2rem;
+  grid-template-columns: repeat(4, 2.75rem);
+  grid-template-rows: repeat(4, 4rem);
 }
 
-@media screen and (min-width: 350px) {
-  .rtc-memory--board {
-    grid-gap: 0.6rem;
-    padding: 0 1.5rem;
+@media screen and (min-width: 300px) {
+  .rtc-memory-game {
+    gap: 1.5rem;
   }
 }
 
-@media screen and (min-height: 600px) {
+@media screen and (min-width: 360px) {
+  .rtc-memory-game {
+    gap: 2rem;
+  }
+
   .rtc-memory--board {
-    height: 24rem;
+    grid-template-columns: repeat(4, 3rem);
+    grid-template-rows: repeat(4, 4.25rem);
   }
 }
 
 @media screen and (min-width: 400px) {
-  .rtc-memory--board {
-    height: 26rem;
-    padding: 0 2rem;
+  .rtc-memory-game {
+    gap: 3rem;
+  }
+
+  .rtc-memory-description {
+    font-size: 1.15rem;
   }
 }
 
-@media screen and (min-width: 450px) {
-  .rtc-memory--board {
-    grid-gap: 0.75rem;
-    padding: 0 3rem;
+@media screen and (min-width: 460px) {
+  .rtc-memory-game {
+    gap: 3.5rem;
+  }
+
+  .rtc-memory--points {
+    font-size: 1.25rem;
   }
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 540px) {
+  .rtc-memory-game {
+    gap: 4.5rem;
+  }
+
+  .rtc-memory--points {
+    font-size: 1.5rem;
+  }
+
   .rtc-memory--board {
-    padding: 0 5rem;
+    grid-gap: 0.6rem;
   }
 }
 
 @media screen and (min-width: 600px) {
+  .rtc-memory-game {
+    gap: 5.25rem;
+  }
+
   .rtc-memory--board {
-    grid-gap: 0.85rem;
-    padding: 0 7.5rem;
+    grid-template-columns: repeat(4, 3.25rem);
+    grid-template-rows: repeat(4, 4.25rem);
   }
 }
 
 @media screen and (min-width: 700px) {
   .rtc-memory-game {
-    display: grid;
-    grid-template-columns: repeat(3, 27.5% 45% 27.5%);
+    gap: 7rem;
   }
 
-  .rtc-memory--points_div1,
-  .rtc-memory--points_div2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  .rtc-memory--points {
+    font-size: 1.75rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .rtc-memory {
+    gap: 2rem;
+    padding-bottom: 4rem;
   }
 
-  .rtc-memory--points_div1-h3,
-  .rtc-memory--points_div2-h3 {
-    font-size: 4rem;
+  .rtc-memory-game {
+    gap: 7.5rem;
+  }
+
+  .rtc-memory-description {
+    font-size: 1.25rem;
   }
 
   .rtc-memory--board {
-    grid-gap: 1rem;
-    padding: 0 1rem;
+    grid-gap: 0.75rem;
+    grid-template-columns: repeat(4, 4rem);
+    grid-template-rows: repeat(4, 5.75rem);
   }
 }
 
 @media screen and (min-width: 900px) {
-  .rtc-memory--board {
-    padding: 0 2rem;
+  .rtc-memory {
+    padding-top: 1rem;
+  }
+
+  .rtc-memory-game {
+    gap: 8.75rem;
+  }
+
+  .rtc-memory--points {
+    font-size: 2rem;
   }
 }
 
 @media screen and (min-width: 1000px) {
+  .rtc-memory-game {
+    gap: 10rem;
+  }
+
   .rtc-memory--board {
-    padding: 0 4rem;
+    grid-gap: 0.9rem;
   }
 }
 
-@media screen and (min-width: 1100px) {
-  .rtc-memory--board {
-    padding: 0 6rem;
+@media screen and (min-width: 1050px) {
+  .rtc-memory-game {
+    gap: 12rem;
   }
 }

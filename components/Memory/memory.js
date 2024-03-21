@@ -2,8 +2,59 @@ import './memory.css'
 import mainMenuCleaner from '../../utils/mainMenuCleaner';
 import shuffleArray from '../../utils/shuffleArray';
 import cardTemplate from './Card/card';
-import handleMemoryCardClick from '../../utils/handleMemoryCardClick';
-import { delay } from '../../utils/handleMemoryCardClick';
+import { delay } from '../../utils/delay';
+
+const discoveredPairs = [];
+let flippedCards = [];
+let gameOver = false;
+
+const handleMemoryCardClick = async (event, data, description) => {
+
+    const card = event.target;
+
+    if (!gameOver) {
+
+        card.classList.add('flipped');
+        flippedCards.push(card);
+
+        if (flippedCards.length === 2) {
+
+            const firstCardImage = flippedCards[0];
+            const secondCardImage = flippedCards[1];
+
+            if (firstCardImage.firstChild.alt === secondCardImage.firstChild.alt) {
+
+                discoveredPairs.push(flippedCards);
+
+                const points_div1Number = document.querySelector('.rtc-memory--points_div1-h3');
+                points_div1Number.innerText = discoveredPairs.length;
+
+                const points_div2Number = document.querySelector('.rtc-memory--points_div2-h3');
+                points_div2Number.innerText = discoveredPairs.length;
+
+                flippedCards = [];
+
+                if (discoveredPairs.length === data.length) {
+                    gameOver = true;
+                    await delay(1000);
+                    description.innerText = '🎉️  EPIC WIN!!  🎉️';
+                }
+
+            } else {
+
+                await delay(1000);
+
+                flippedCards.forEach(flippedCard => {
+                    flippedCard.classList.remove('flipped');
+                });
+
+                flippedCards = [];
+            }
+        }
+    } else {
+        return;
+    }
+};
 
 const memoryTemplate = (event, data) => {
 
@@ -23,16 +74,18 @@ const memoryTemplate = (event, data) => {
         memoryBoard.className = 'rtc-memory--board';
 
         const memoryPoints_1 = document.createElement('div');
-        memoryPoints_1.className = 'rtc-memory--points_div1';
+        memoryPoints_1.className = 'rtc-memory--points';
+        memoryPoints_1.classList.add('rtc-memory--points_div1');
         memoryPoints_1.innerHTML += `<h3 class="rtc-memory--points_div1-h3">0</h3>`;
 
         const memoryPoints_2 = document.createElement('div');
-        memoryPoints_2.className = 'rtc-memory--points_div2';
+        memoryPoints_2.className = 'rtc-memory--points';
+        memoryPoints_2.classList.add('rtc-memory--points_div2');
         memoryPoints_2.innerHTML += `<h3 class="rtc-memory--points_div2-h3">0</h3>`;
 
         memoryBoard.addEventListener('click', (event) => {
             if (event.target.classList.contains('rtc-memory--board-card')) {
-                handleMemoryCardClick(event, data);
+                handleMemoryCardClick(event, data, memoryGameDescription);
             }
         });
 

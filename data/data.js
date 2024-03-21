@@ -2,42 +2,42 @@ const memoryCardImages = [
     {
         id: 1,
         name: 'Lion',
-        src: '../assets/images/lion.png'
+        src: 'https://res.cloudinary.com/ddd5cycm4/image/upload/v1710876074/lion_ksgpvg.png'
     },
     {
         id: 2,
         name: 'Cow',
-        src: '../assets/images/cow.png'
+        src: 'https://res.cloudinary.com/ddd5cycm4/image/upload/v1710876042/cow_a6yzha.png'
     },
     {
         id: 3,
         name: 'Cat',
-        src: '../assets/images/cat.png'
+        src: 'https://res.cloudinary.com/ddd5cycm4/image/upload/v1710876024/cat_z3wc1n.png'
     },
     {
         id: 4,
         name: 'Crab',
-        src: '../assets/images/crab.png'
+        src: 'https://res.cloudinary.com/ddd5cycm4/image/upload/v1710876054/crab_wactob.png'
     },
     {
         id: 5,
         name: 'Bee',
-        src: '../assets/images/bee.png'
+        src: 'https://res.cloudinary.com/ddd5cycm4/image/upload/v1710876001/bee_oevuuu.png'
     },
     {
         id: 6,
         name: 'Bat',
-        src: '../assets/images/bat.png'
+        src: 'https://res.cloudinary.com/ddd5cycm4/image/upload/v1710875991/bat_huavov.png'
     },
     {
         id: 7,
         name: 'Butterfly',
-        src: '../assets/images/butterfly.png'
+        src: 'https://res.cloudinary.com/ddd5cycm4/image/upload/v1710876012/butterfly_ifsezn.png'
     },
     {
         id: 8,
         name: 'Dolphin',
-        src: '../assets/images/dolphin.png'
+        src: 'https://res.cloudinary.com/ddd5cycm4/image/upload/v1710876066/dolphin_h07maj.png'
     }
 ];
 
