@@ -11,7 +11,7 @@ let questionsCounter = 0;
 let score = 0;
 
 const SCORE_POINTS = 100;
-const MAX_QUESTIONS = 3;
+const MAX_QUESTIONS = 10;
 
 const getCardsInfo = async () => {
     let answersArray = [];
