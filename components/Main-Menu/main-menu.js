@@ -1,4 +1,5 @@
 import './main-menu.css'
+import { createButton, createContainer, createTitle } from '../Templates/templates';
 import memoryCardImages from '../../data/data';
 import connect4Template from '../Connect-4/connect4';
 import memoryTemplate from '../Memory/memory';
@@ -7,33 +8,17 @@ import quizTemplate from '../Quiz/quiz';
 const mainMenuTemplate = () => {
     const app = document.querySelector('#app');
 
-    const welcomeMain = document.createElement('main');
-    welcomeMain.className = 'rtc-welcome';
+    const welcomeMain = createContainer('main', 'rtc-welcome');
 
-    const h1 = document.createElement('h1');
-    h1.className = 'rtc-welcome-h1';
-    h1.innerText = 'The Board 🎲️🎲️';
+    const h1 = createTitle('h1', 'rtc-header-h1', 'The Board 🎲️🎲️');
 
-    const gamesDiv = document.createElement('div');
-    gamesDiv.className = 'rtc-welcome-games';
+    const gamesDiv = createContainer('div', 'rtc-welcome-games');
 
-    const connect4Button = document.createElement('button');
-    connect4Button.className = 'rtc-welcome-games-button';
-    connect4Button.classList.add('rtc-connect4');
-    connect4Button.innerText = 'Connect4';
-    connect4Button.addEventListener('click', connect4Template);
+    const connect4Button = createButton('rtc-welcome-games-button rtc-welcome-connect4', 'Connect4', connect4Template);
 
-    const memoryButton = document.createElement('button');
-    memoryButton.className = 'rtc-welcome-games-button';
-    memoryButton.classList.add('rtc-memory');
-    memoryButton.innerText = 'Memory';
-    memoryButton.addEventListener('click', (event) => memoryTemplate(event, memoryCardImages));
+    const memoryButton = createButton('rtc-welcome-games-button rtc-welcome-memory', 'Memory', (event) => memoryTemplate(event, memoryCardImages));
 
-    const quizButton = document.createElement('button');
-    quizButton.className = 'rtc-welcome-games-button';
-    quizButton.classList.add('rtc-quiz');
-    quizButton.innerText = 'Quiz';
-    quizButton.addEventListener('click', quizTemplate);
+    const quizButton = createButton('rtc-welcome-games-button rtc-welcome-quiz', 'Quiz', quizTemplate);
 
     gamesDiv.appendChild(connect4Button);
     gamesDiv.appendChild(memoryButton);

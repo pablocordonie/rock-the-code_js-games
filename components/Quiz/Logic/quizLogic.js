@@ -1,4 +1,5 @@
 import he from 'he';
+import { createEndgameForm, createEndgameRanking, createScoresContainer } from '../Templates/quizTemplates';
 import { mainMenuCleaner as cleaner } from '../../../utils/mainMenuCleaner';
 import shuffleAnswersArray from '../../../utils/shuffleArray';
 import { delay as timer } from '../../../utils/delay';
@@ -11,7 +12,7 @@ let questionsCounter = 0;
 let score = 0;
 
 const SCORE_POINTS = 100;
-const MAX_QUESTIONS = 10;
+const MAX_QUESTIONS = 2;
 
 const getCardsInfo = async () => {
     let answersArray = [];
@@ -68,48 +69,17 @@ const saveHighScore = (event) => {
 
     localStorage.setItem('highScores', JSON.stringify(highScores));
 
-    const mainContent = document.querySelector('#app > main');
-    mainContent.innerHTML = `
-        <div class="rtc-quiz-endgame-ranking">
-            <h2 class="rtc-quiz-endgame-ranking_title">Ranking</h2>
-            <div class="rtc-quiz-endgame-ranking_scores"></div>
-            <h3 class="rtc-quiz-endgame-ranking_message">Thanks for Playing! 😃️</h3>
-        </div>
-    `;
+    createEndgameRanking();
 
-    highScores.forEach(highScore => {
-        const scoresContainer = document.querySelector('.rtc-quiz-endgame-ranking_scores');
-        scoresContainer.innerHTML += `
-            <div class="rtc-quiz-endgame-ranking_scores-score">
-                <h3 class="rtc-quiz-endgame-ranking_scores-score-username">${highScore.name}</h3>
-                <h3 class="rtc-quiz-endgame-ranking_scores-score-points">${highScore.score}</h3>
-            </div>
-        `;
-    });
+    highScores.forEach(highScore => createScoresContainer(highScore));
 };
 
 const getNewQuestion = (progressText, questionTitle, answers, scoreText) => {
     if (availableQuestions.length === 0 || questionsCounter > MAX_QUESTIONS) {
         localStorage.setItem('lastScore', score);
-        console.log('No hay más preguntas, señoría!');
         cleaner('quiz');
 
-        const mainContent = document.querySelector('#app > main');
-        mainContent.innerHTML = `
-            <div class="rtc-quiz-endgame">
-                <h2 class="rtc-quiz-endgame-final_score" id="finalScore">${scoreText.innerText}</h2>
-                <form class="rtc-quiz-endgame-form">
-                    <h3 class="rtc-quiz-endgame-form-title">
-                        Enter your name below to save your score!
-                    </h3>
-                    <input class="rtc-quiz-endgame-form-input" id="username" type="text" name="" placeholder="Enter your name"
-                    >
-                    <button class="rtc-quiz-endgame-form-button" id="saveScoreButton" type="button" disabled>
-                        Save
-                    </button>
-                </form>
-            </div>
-        `;
+        createEndgameForm(scoreText);
 
         const username = document.querySelector('#username');
         const saveScoreBtn = document.querySelector('#saveScoreButton');
@@ -159,24 +129,24 @@ const addListenersToAnswers = (progressText, questionTitle, answers, scoreText) 
                 incrementScore(SCORE_POINTS, scoreText);
                 if (selectedAnswer.localName === 'p') {
                     selectedAnswer.parentElement.classList.add(classToApply);
-                    await timer(5000);
+                    await timer(3000);
                     selectedAnswer.parentElement.classList.remove(classToApply);
                 } else {
                     selectedAnswer.classList.add(classToApply);
-                    await timer(5000);
+                    await timer(3000);
                     selectedAnswer.classList.remove(classToApply);
                 }
             } else {
                 if (selectedAnswer.localName === 'p') {
                     selectedAnswer.parentElement.classList.add(classToApply);
                     unselectedCorrectAnswer.classList.add('correct');
-                    await timer(5000);
+                    await timer(3000);
                     selectedAnswer.parentElement.classList.remove(classToApply);
                     unselectedCorrectAnswer.classList.remove('correct');
                 } else {
                     selectedAnswer.classList.add(classToApply);
                     unselectedCorrectAnswer.classList.add('correct');
-                    await timer(5000);
+                    await timer(3000);
                     selectedAnswer.classList.remove(classToApply);
                     unselectedCorrectAnswer.classList.remove('correct');
                 }

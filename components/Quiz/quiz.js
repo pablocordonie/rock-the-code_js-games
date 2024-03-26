@@ -1,6 +1,8 @@
 import './quiz.css'
+import { createButton, createContainer, createText, createTitle } from '../Templates/templates';
+import { createAnswer, createHudState, createQuestion } from './Templates/quizTemplates';
 import mainMenuCleaner from '../../utils/mainMenuCleaner';
-import quizLogic from './Quiz-Logic/quiz-logic';
+import quizLogic from './Logic/quizLogic';
 
 const quizTestTemplate = (event) => {
 
@@ -8,58 +10,33 @@ const quizTestTemplate = (event) => {
 
     const quizMain = document.querySelector('.rtc-quiz');
 
-    const quizGame = document.createElement('div');
-    quizGame.className = 'rtc-quiz-game';
-    quizGame.classList.add('test');
+    const quizGame = createContainer('div', 'rtc-quiz-game test');
 
-    const quizHudItem_1 = document.createElement('div');
-    quizHudItem_1.className = 'rtc-quiz-hud_item';
+    const quizHudItem_1 = createContainer('div', 'rtc-quiz-hud_item');
 
-    const quizHudPrefix_1 = document.createElement('h3');
-    quizHudPrefix_1.className = 'rtc-quiz-hud_item-prefix';
-    quizHudPrefix_1.innerText = 'Questions';
+    const quizHudPrefix_1 = createTitle('h3', 'rtc-quiz-hud_item-prefix', 'Questions');
 
-    const quizHudProgress = document.createElement('p');
-    quizHudProgress.className = 'rtc-quiz-hud_item-progress';
-    quizHudProgress.id = 'progress';
-    quizHudProgress.innerText = '- / -';
+    const quizHudProgress = createHudState('rtc-quiz-hud_item-progress', 'progress', '- / -');
 
-    const quizCard = document.createElement('div');
-    quizCard.className = 'rtc-quiz-card';
+    const quizCard = createContainer('div', 'rtc-quiz-card');
 
-    const quizQuestion = document.createElement('h3');
-    quizQuestion.className = 'rtc-quiz-card-question';
-    quizQuestion.id = 'question';
-    quizQuestion.innerText = '-';
+    const quizQuestion = createQuestion('rtc-quiz-card-question', 'question', '-');
 
-    const quizAnswersContainer = document.createElement('div');
-    quizAnswersContainer.className = 'rtc-quiz-card-answers';
+    const quizAnswersContainer = createContainer('div', 'rtc-quiz-card-answers');
 
     for (let i = 0; i <= 3; i++) {
-
-        const quizAnswer = document.createElement('div');
-        quizAnswer.className = 'rtc-quiz-card-answer';
-        quizAnswer.id = 'answer';
-
-        const quizAnswerText = document.createElement('p');
-        quizAnswerText.className = 'rtc-quiz-card-answer_text';
-        quizAnswerText.innerText = '-';
+        const quizAnswer = createAnswer('rtc-quiz-card-answer', 'answer');
+        const quizAnswerText = createText('rtc-quiz-card-answer_text', '-');
 
         quizAnswer.appendChild(quizAnswerText);
         quizAnswersContainer.appendChild(quizAnswer);
     }
 
-    const quizHudItem_2 = document.createElement('div');
-    quizHudItem_2.className = 'rtc-quiz-hud_item';
+    const quizHudItem_2 = createContainer('div', 'rtc-quiz-hud_item');
 
-    const quizHudPrefix_2 = document.createElement('h3');
-    quizHudPrefix_2.className = 'rtc-quiz-hud_item-prefix';
-    quizHudPrefix_2.innerText = 'Score';
+    const quizHudPrefix_2 = createTitle('h3', 'rtc-quiz-hud_item-prefix', 'Score');
 
-    const quizScore = document.createElement('p');
-    quizScore.className = 'rtc-quiz-hud_item-score';
-    quizScore.id = 'score';
-    quizScore.innerText = '0';
+    const quizScore = createHudState('rtc-quiz-hud_item-score', 'score', '0');
 
     quizHudItem_1.appendChild(quizHudPrefix_1);
     quizHudItem_1.appendChild(quizHudProgress);
@@ -84,17 +61,11 @@ const quizTemplate = (event) => {
 
         const quizMain = document.querySelector('.rtc-quiz');
 
-        const quizGame = document.createElement('div');
-        quizGame.className = 'rtc-quiz-game';
+        const quizGame = createContainer('div', 'rtc-quiz-game');
 
-        const quizGameDescription = document.createElement('h2');
-        quizGameDescription.className = 'rtc-quiz-description';
-        quizGameDescription.innerText = 'Are you ready for a Quiz?';
+        const quizGameDescription = createTitle('h2', 'rtc-quiz-description', 'Are you ready for a Quiz?');
 
-        const quizPlayButton = document.createElement('button');
-        quizPlayButton.className = 'rtc-quiz-play_button';
-        quizPlayButton.innerText = 'Go!';
-        quizPlayButton.addEventListener('click', quizTestTemplate);
+        const quizPlayButton = createButton('rtc-quiz-play_button', 'Go!', quizTestTemplate);
 
         quizGame.appendChild(quizGameDescription);
         quizGame.appendChild(quizPlayButton);
