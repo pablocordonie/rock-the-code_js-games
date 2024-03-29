@@ -1,13 +1,18 @@
 import he from 'he';
-import { createEndgameForm, createEndgameRanking, createScoresContainer } from '../Templates/quizTemplates';
-import { mainMenuCleaner as cleaner } from '../../../utils/mainMenuCleaner';
+import { createEndgameForm, createEndgameRanking, createScoresContainer, renderLoader } from '../Templates/quizTemplates';
+import mainContentCleaner from '../../../utils/mainContentCleaner';
+import quizTemplate from '../quiz';
 import shuffleAnswersArray from '../../../utils/shuffleArray';
 import { delay as timer } from '../../../utils/delay';
 
+let answersArray = [];
 let acceptedAnswers = true;
 let availableQuestions = [];
 let correctAnswer = '';
+let currentCard = {};
 let unselectedCorrectAnswer = '';
+let questionsArray = [];
+let questionsCards = [];
 let questionsCounter = 0;
 let score = 0;
 
@@ -15,13 +20,12 @@ const SCORE_POINTS = 100;
 const MAX_QUESTIONS = 2;
 
 const getCardsInfo = async () => {
-    let answersArray = [];
-    const questionsCards = [];
-    let currentCard = {};
 
-    const questionsArray = await fetch(`https://opentdb.com/api.php?amount=${MAX_QUESTIONS}&difficulty=easy&type=multiple`).then((res) => res.json()).then((res) => res.results).catch(error => console.log(error));
+    await timer(3000);
 
-    for (let i = 0; i < MAX_QUESTIONS; i++) {
+    questionsArray = await fetch(`https://opentdb.com/api.php?amount=${MAX_QUESTIONS}&difficulty=easy&type=multiple`).then((res) => res.json()).then((res) => res.results).catch(error => console.log(error));
+
+    for (let i = 0; i < questionsArray.length; i++) {
 
         answersArray.push(questionsArray[i].correct_answer);
         for (let j = 0; j <= 2; j++) {
@@ -40,9 +44,7 @@ const getCardsInfo = async () => {
         };
 
         questionsCards.push(currentCard);
-
         answersArray = [];
-        currentCard = {};
     }
 
     return questionsCards;
@@ -77,7 +79,7 @@ const saveHighScore = (event) => {
 const getNewQuestion = (progressText, questionTitle, answers, scoreText) => {
     if (availableQuestions.length === 0 || questionsCounter > MAX_QUESTIONS) {
         localStorage.setItem('lastScore', score);
-        cleaner('quiz');
+        mainContentCleaner('quiz');
 
         createEndgameForm(scoreText);
 
@@ -94,7 +96,7 @@ const getNewQuestion = (progressText, questionTitle, answers, scoreText) => {
         correctAnswer = he.decode(availableQuestions[0].correctAnswer);
 
         questionsCounter++;
-        progressText.innerText = `${questionsCounter} / ${MAX_QUESTIONS}`;
+        progressText.innerText = `${questionsCounter} of ${MAX_QUESTIONS}`;
 
         questionTitle.innerText = he.decode(availableQuestions[0].question);
 
@@ -161,9 +163,28 @@ const incrementScore = (scorePoints, scoreText) => {
     scoreText.innerText = score;
 };
 
+export const resetQuizGame = (event) => {
+    mainContentCleaner('quiz');
+
+    answersArray = [];
+    acceptedAnswers = true;
+    availableQuestions = [];
+    correctAnswer = '';
+    currentCard = {};
+    unselectedCorrectAnswer = '';
+    questionsArray = [];
+    questionsCards = [];
+    questionsCounter = 0;
+    score = 0;
+
+    quizTemplate();
+};
+
 const quizLogic = async (progressText, questionTitle, answersContainer, scoreText) => {
     questionsCounter = 0;
     score = 0;
+    /* TO-DO: A visual loader is necessary to await 3 seconds for the API info (it's mandatory 'cause of the API behaviour which launches a 429 Error: Too Many Requests if the info isn't awaited) */
+    renderLoader();
     availableQuestions = await getCardsInfo();
 
     const answers = Array.from(answersContainer.children);

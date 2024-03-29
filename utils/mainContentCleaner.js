@@ -1,4 +1,4 @@
-export const mainMenuCleaner = (game) => {
+export const mainContentCleaner = (game) => {
     const header = document.querySelector('.rtc-header');
     const mainContent = document.querySelector('#app > main');
     const headerButtons = Array.from(document.querySelectorAll('.rtc-header-games-button'));
@@ -9,8 +9,8 @@ export const mainMenuCleaner = (game) => {
         }
     });
 
-    const connect4Button = document.querySelector(`.rtc-header-${game}`);
-    connect4Button.setAttribute('disabled', '');
+    const gameButton = document.querySelector(`.rtc-header-${game}`);
+    gameButton.setAttribute('disabled', '');
 
     mainContent.innerHTML = '';
     mainContent.className = `rtc-${game}`;
@@ -18,4 +18,4 @@ export const mainMenuCleaner = (game) => {
     return mainContent;
 };
 
-export default mainMenuCleaner;
+export default mainContentCleaner;

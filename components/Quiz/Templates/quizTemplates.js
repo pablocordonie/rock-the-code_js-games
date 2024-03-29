@@ -1,16 +1,10 @@
+import { delay } from '../../../utils/delay';
+
 export const createAnswer = (className, id) => {
     const quizAnswer = document.createElement('div');
     quizAnswer.className = className;
     quizAnswer.id = id;
     return quizAnswer;
-};
-
-export const createHudState = (className, id, text) => {
-    const quizHudState = document.createElement('p');
-    quizHudState.className = className;
-    quizHudState.id = id;
-    quizHudState.innerText = text;
-    return quizHudState;
 };
 
 export const createEndgameForm = (scoreText) => {
@@ -30,6 +24,7 @@ export const createEndgameForm = (scoreText) => {
             </form>
         </div>
     `;
+    return mainContent;
 };
 
 export const createEndgameRanking = () => {
@@ -42,6 +37,14 @@ export const createEndgameRanking = () => {
         </div>
     `;
     return mainContent;
+};
+
+export const createHudState = (className, id, text) => {
+    const quizHudState = document.createElement('p');
+    quizHudState.className = className;
+    quizHudState.id = id;
+    quizHudState.innerText = text;
+    return quizHudState;
 };
 
 export const createQuestion = (className, id, text) => {
@@ -61,4 +64,25 @@ export const createScoresContainer = (highScore) => {
         </div>
     `;
     return scoresContainer;
+};
+
+export const renderLoader = async () => {
+    const mainContent = document.querySelector('#app > main');
+
+    const loaderContainer = document.createElement('div');
+    loaderContainer.className = 'rtc-quiz-loader_container';
+
+    const loader = document.createElement('div');
+    loader.className = 'rtc-quiz-loader';
+
+    const loaderText = document.createElement('p');
+    loaderText.className = 'rtc-quiz-loader_text';
+    loaderText.innerText = 'Loading';
+
+    loaderContainer.appendChild(loader);
+    loaderContainer.appendChild(loaderText);
+
+    mainContent.appendChild(loaderContainer);
+    await delay(3500);
+    mainContent.removeChild(loaderContainer);
 };

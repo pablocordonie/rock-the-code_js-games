@@ -1,8 +1,8 @@
 import './memory.css'
-import { createContainer, createContainerWithInnerHTML, createImg, createTitle } from '../Templates/templates';
+import { createButton, createContainer, createContainerWithInnerHTML, createImg, createTitle } from '../Templates/templates';
 import { delay } from '../../utils/delay';
-import handleMemoryCardClick from './Logic/memoryLogic';
-import mainMenuCleaner from '../../utils/mainMenuCleaner';
+import handleMemoryCardClick, { resetMemoryGame } from './Logic/memoryLogic';
+import mainContentCleaner from '../../utils/mainContentCleaner';
 import shuffleArray from '../../utils/shuffleArray';
 
 const cardTemplate = (cardImage) => {
@@ -15,11 +15,13 @@ const cardTemplate = (cardImage) => {
 };
 
 const memoryTemplate = (event, data) => {
-    mainMenuCleaner('memory');
+    mainContentCleaner('memory');
 
     const memoryMain = document.querySelector('.rtc-memory');
 
     const memoryGame = createContainer('div', 'rtc-memory-game');
+
+    const memoryReset = createButton('rtc-memory-reset', 'Reset', (event) => resetMemoryGame(event, data));
 
     const memoryGameDescription = createTitle('h2', 'rtc-memory-description', 'Find the 8 pairs');
 
@@ -31,7 +33,7 @@ const memoryTemplate = (event, data) => {
 
     memoryBoard.addEventListener('click', (event) => {
         if (event.target.classList.contains('rtc-memory--board-card')) {
-            handleMemoryCardClick(event, data, memoryGameDescription);
+            handleMemoryCardClick(event, data, memoryGameDescription, memoryReset);
         }
     });
 
@@ -49,6 +51,7 @@ const memoryTemplate = (event, data) => {
 
     memoryMain.appendChild(memoryGameDescription);
     memoryMain.appendChild(memoryGame);
+    memoryMain.appendChild(memoryReset);
 };
 
 export default memoryTemplate;

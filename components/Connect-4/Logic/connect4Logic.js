@@ -1,12 +1,14 @@
-export const board = [];
-const currentColumns = [5, 5, 5, 5, 5, 5, 5];
+import mainContentCleaner from '../../../utils/mainContentCleaner';
+import connect4Template from '../connect4';
+
 const redPlayer = 'R';
 const yellowPlayer = 'Y';
 
+let currentColumns = [5, 5, 5, 5, 5, 5, 5];
 let currentPlayer = redPlayer;
 let gameOver = false;
 
-const setWinner = (r, c) => {
+const setWinner = (r, c, board, resetButton) => {
     let winnerMessage = document.querySelector('.rtc-connect4-description');
 
     if (board[r][c] == redPlayer) {
@@ -16,9 +18,10 @@ const setWinner = (r, c) => {
     }
 
     gameOver = true;
+    resetButton.innerText = 'Start Again';
 };
 
-const checkWinner = (columns, rows) => {
+const checkWinner = (columns, rows, board, resetButton) => {
     // horizontal
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns - 3; c++) {
@@ -26,7 +29,7 @@ const checkWinner = (columns, rows) => {
                 board[r][c] === board[r][c + 1] &&
                 board[r][c + 1] === board[r][c + 2] &&
                 board[r][c + 2] === board[r][c + 3]) {
-                setWinner(r, c);
+                setWinner(r, c, board, resetButton);
                 return;
             }
         }
@@ -36,7 +39,7 @@ const checkWinner = (columns, rows) => {
         for (let r = 0; r < rows - 3; r++) {
             if (board[r][c] != ' ') {
                 if (board[r][c] == board[r + 1][c] && board[r + 1][c] == board[r + 2][c] && board[r + 2][c] == board[r + 3][c]) {
-                    setWinner(r, c);
+                    setWinner(r, c, board, resetButton);
                     return;
                 }
             }
@@ -47,7 +50,7 @@ const checkWinner = (columns, rows) => {
         for (let c = 0; c < columns - 3; c++) {
             if (board[r][c] != ' ') {
                 if (board[r][c] == board[r + 1][c + 1] && board[r + 1][c + 1] == board[r + 2][c + 2] && board[r + 2][c + 2] == board[r + 3][c + 3]) {
-                    setWinner(r, c);
+                    setWinner(r, c, board, resetButton);
                     return;
                 }
             }
@@ -59,7 +62,7 @@ const checkWinner = (columns, rows) => {
         for (let c = 0; c < columns - 3; c++) {
             if (board[r][c] != ' ') {
                 if (board[r][c] == board[r - 1][c + 1] && board[r - 1][c + 1] == board[r - 2][c + 2] && board[r - 2][c + 2] == board[r - 3][c + 3]) {
-                    setWinner(r, c);
+                    setWinner(r, c, board, resetButton);
                     return;
                 }
             }
@@ -67,7 +70,19 @@ const checkWinner = (columns, rows) => {
     }
 };
 
-const connect4Logic = (event, connect4Circle, columns, rows) => {
+export const resetConnect4Game = (event, board, connect4Circle) => {
+    mainContentCleaner('connect4');
+
+    board = [];
+    connect4Circle = '';
+    currentColumns = [5, 5, 5, 5, 5, 5, 5];
+    currentPlayer = redPlayer;
+    gameOver = false;
+
+    connect4Template();
+};
+
+const connect4Logic = (event, connect4Circle, columns, rows, board, resetButton) => {
     const descriptionGame = document.querySelector('.rtc-connect4-description');
 
     if (gameOver) {
@@ -101,7 +116,7 @@ const connect4Logic = (event, connect4Circle, columns, rows) => {
 
     r -= 1; // Updates the row height for the column after setting the piece inside the column
     currentColumns[c] = r; // Updates the array currentColumns
-    checkWinner(columns, rows);
+    checkWinner(columns, rows, board, resetButton);
 };
 
 export default connect4Logic;

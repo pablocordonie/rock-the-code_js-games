@@ -1,22 +1,24 @@
 import './quiz.css'
 import { createButton, createContainer, createText, createTitle } from '../Templates/templates';
 import { createAnswer, createHudState, createQuestion } from './Templates/quizTemplates';
-import mainMenuCleaner from '../../utils/mainMenuCleaner';
-import quizLogic from './Logic/quizLogic';
+import mainContentCleaner from '../../utils/mainContentCleaner';
+import quizLogic, { resetQuizGame } from './Logic/quizLogic';
 
 const quizTestTemplate = (event) => {
 
-    mainMenuCleaner('quiz');
+    mainContentCleaner('quiz');
 
     const quizMain = document.querySelector('.rtc-quiz');
 
     const quizGame = createContainer('div', 'rtc-quiz-game test');
 
+    const quizReset = createButton('rtc-quiz-reset', 'Reset', resetQuizGame);
+
     const quizHudItem_1 = createContainer('div', 'rtc-quiz-hud_item');
 
-    const quizHudPrefix_1 = createTitle('h3', 'rtc-quiz-hud_item-prefix', 'Questions');
+    const quizHudPrefix_1 = createTitle('h3', 'rtc-quiz-hud_item-prefix', 'Question');
 
-    const quizHudProgress = createHudState('rtc-quiz-hud_item-progress', 'progress', '- / -');
+    const quizHudProgress = createHudState('rtc-quiz-hud_item-progress', 'progress', '');
 
     const quizCard = createContainer('div', 'rtc-quiz-card');
 
@@ -52,25 +54,24 @@ const quizTestTemplate = (event) => {
     quizGame.appendChild(quizHudItem_2);
 
     quizMain.appendChild(quizGame);
+    quizMain.appendChild(quizReset);
     quizLogic(quizHudProgress, quizQuestion, quizAnswersContainer, quizScore);
 };
 
 const quizTemplate = (event) => {
-    if (event.type === 'click') {
-        mainMenuCleaner('quiz');
+    mainContentCleaner('quiz');
 
-        const quizMain = document.querySelector('.rtc-quiz');
+    const quizMain = document.querySelector('.rtc-quiz');
 
-        const quizGame = createContainer('div', 'rtc-quiz-game');
+    const quizGame = createContainer('div', 'rtc-quiz-game');
 
-        const quizGameDescription = createTitle('h2', 'rtc-quiz-description', 'Are you ready for a Quiz?');
+    const quizGameDescription = createTitle('h2', 'rtc-quiz-description', 'Are you ready for a Quiz?');
 
-        const quizPlayButton = createButton('rtc-quiz-play_button', 'Go!', quizTestTemplate);
+    const quizPlayButton = createButton('rtc-quiz-play_button', 'Go!', quizTestTemplate);
 
-        quizGame.appendChild(quizGameDescription);
-        quizGame.appendChild(quizPlayButton);
-        quizMain.appendChild(quizGame);
-    }
+    quizGame.appendChild(quizGameDescription);
+    quizGame.appendChild(quizPlayButton);
+    quizMain.appendChild(quizGame);
 };
 
 export default quizTemplate;

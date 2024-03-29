@@ -1,6 +1,12 @@
 @import '../../css/style.css';
 
-/* TO-DO: Refactor media queries for every viewport width */
+.rtc-quiz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
 
 .rtc-quiz-game,
 .rtc-quiz-endgame {
@@ -21,6 +27,7 @@
   font-size: 1rem;
 }
 
+.rtc-quiz-reset,
 .rtc-quiz-play_button,
 .rtc-quiz-card-answer,
 .rtc-quiz-endgame-form-input {
@@ -73,6 +80,7 @@
   font-size: 0.75rem;
 }
 
+.rtc-quiz-reset:hover,
 .rtc-quiz-play_button:hover,
 .rtc-quiz-card-answer:hover,
 .rtc-quiz-endgame-form-button {
@@ -196,6 +204,10 @@
 }
 
 @media screen and (min-width: 768px) {
+  .rtc-quiz {
+    gap: 3.5rem;
+  }
+
   .rtc-quiz-game,
   .rtc-quiz-endgame {
     gap: 6rem;
@@ -206,7 +218,54 @@
     display: grid;
     grid-template-columns: repeat(3, 25% 50% 20%);
     grid-gap: 0;
-    padding-top: 2rem;
+    padding: 1rem 0 0 0;
+    width: inherit;
+  }
+
+  /* LOADER */
+
+  .rtc-quiz-loader_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 4rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 1.25rem #00000080;
+    text-align: center;
+    z-index: 9999;
+  }
+
+  .rtc-quiz-loader {
+    border: 0.8rem solid #f3f3f3;
+    border-top: 0.8rem solid #cc0000;
+    border-radius: 50%;
+    width: 3.25rem;
+    height: 3.25rem;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .rtc-quiz-loader_text {
+    color: #333;
+    font-size: 1rem;
+  }
+
+  .rtc-quiz-reset {
+    padding: 0.75rem 2rem;
   }
 
   .rtc-quiz-description {
@@ -222,11 +281,11 @@
 
   .rtc-quiz-play_button,
   .rtc-quiz-card-answer {
-    padding: 1rem 4rem;
+    padding: 0.75rem 4rem;
   }
 
   .rtc-quiz-card {
-    gap: 3rem;
+    gap: 2rem;
     width: 100%;
   }
 
@@ -242,18 +301,10 @@
     gap: 2rem;
   }
 
+  .rtc-quiz-reset,
   .rtc-quiz-card-question,
   .rtc-quiz-card-answer_text {
     font-size: 1rem;
-  }
-
-  /* HUD */
-
-  .rtc-quiz-hud_item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: normal;
   }
 
   .rtc-quiz-hud_item-prefix,
@@ -261,8 +312,6 @@
   .rtc-quiz-hud_item-score {
     font-size: 1rem;
   }
-
-  /* ENDGAME */
 
   .rtc-quiz-endgame {
     gap: 2rem;

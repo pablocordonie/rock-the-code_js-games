@@ -26,6 +26,22 @@
   gap: 1rem;
 }
 
+.rtc-memory-reset {
+  background-color: #ffffff;
+  border: 0.3rem solid #cc0000;
+  border-radius: 0.75rem;
+  color: #e60023;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+}
+
+.rtc-memory-reset:hover {
+  background-color: #cc0000;
+  color: #ffffff;
+}
+
 .rtc-memory--board {
   display: grid;
   grid-gap: 0.5rem;
@@ -146,22 +162,23 @@
     gap: 7.5rem;
   }
 
+  .rtc-memory-reset {
+    font-size: 1rem;
+    padding: 0.5rem 1.75rem;
+  }
+
   .rtc-memory-description {
     font-size: 1.25rem;
   }
 
   .rtc-memory--board {
     grid-gap: 0.75rem;
-    grid-template-columns: repeat(4, 4rem);
-    grid-template-rows: repeat(4, 5.75rem);
+    grid-template-columns: repeat(4, 3.5rem);
+    grid-template-rows: repeat(4, 5.25rem);
   }
 }
 
 @media screen and (min-width: 900px) {
-  .rtc-memory {
-    padding-top: 1rem;
-  }
-
   .rtc-memory-game {
     gap: 8.75rem;
   }

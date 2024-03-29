@@ -17,6 +17,22 @@
   width: inherit;
 }
 
+.rtc-connect4-reset {
+  background-color: #ffffff;
+  border: 0.3rem solid #cc0000;
+  border-radius: 0.75rem;
+  color: #e60023;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+}
+
+.rtc-connect4-reset:hover {
+  background-color: #cc0000;
+  color: #ffffff;
+}
+
 .rtc-connect4--board {
   border: 0.25rem solid navy;
   display: flex;
@@ -100,17 +116,13 @@
   }
 
   .rtc-connect4--board {
-    height: 24rem;
+    height: 22rem;
   }
 }
 
 @media screen and (min-width: 540px) {
   .rtc-connect4-game {
     padding: 0 2.5rem;
-  }
-
-  .rtc-connect4--board {
-    height: 24rem;
   }
 }
 
@@ -134,7 +146,7 @@
 
 @media screen and (min-width: 768px) {
   .rtc-connect4 {
-    gap: 2.5rem;
+    gap: 2.625rem;
   }
 
   .rtc-connect4-game {
@@ -143,15 +155,19 @@
     padding: 0;
   }
 
+  .rtc-connect4-reset {
+    font-size: 1rem;
+    padding: 0.5rem 1.75rem;
+  }
+
   .rtc-connect4--board {
-    width: 24rem;
+    width: 22rem;
   }
 }
 
 @media screen and (min-width: 900px) {
   .rtc-connect4--board {
-    height: 24rem;
-    width: 26rem;
+    width: 24rem;
   }
 }
 
@@ -161,7 +177,7 @@
   }
 
   .rtc-connect4--board {
-    height: 26rem;
-    width: 28rem;
+    height: 24rem;
+    width: 26rem;
   }
 }

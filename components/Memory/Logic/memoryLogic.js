@@ -1,10 +1,22 @@
 import { delay } from '../../../utils/delay';
+import mainContentCleaner from '../../../utils/mainContentCleaner';
+import memoryTemplate from '../memory';
 
-const discoveredPairs = [];
+let discoveredPairs = [];
 let flippedCards = [];
 let gameOver = false;
 
-const handleMemoryCardClick = async (event, data, description) => {
+export const resetMemoryGame = (event, data) => {
+    mainContentCleaner('memory');
+
+    discoveredPairs = [];
+    flippedCards = [];
+    gameOver = false;
+
+    memoryTemplate(event, data);
+};
+
+const handleMemoryCardClick = async (event, data, description, resetButton) => {
 
     const card = event.target;
 
@@ -34,6 +46,7 @@ const handleMemoryCardClick = async (event, data, description) => {
                     gameOver = true;
                     await delay(1000);
                     description.innerText = '🎉️  EPIC WIN!!  🎉️';
+                    resetButton.innerText = 'Start Again'
                 }
 
             } else {
