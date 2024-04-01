@@ -40,6 +40,8 @@ const quizTestTemplate = (event) => {
 
     const quizScore = createHudState('rtc-quiz-hud_item-score', 'score', '0');
 
+    const quizStartAgain = createButton('rtc-quiz-reset', 'Start Again', resetQuizGame);
+
     quizHudItem_1.appendChild(quizHudPrefix_1);
     quizHudItem_1.appendChild(quizHudProgress);
 
@@ -55,7 +57,7 @@ const quizTestTemplate = (event) => {
 
     quizMain.appendChild(quizGame);
     quizMain.appendChild(quizReset);
-    quizLogic(quizHudProgress, quizQuestion, quizAnswersContainer, quizScore);
+    quizLogic(quizHudProgress, quizQuestion, quizAnswersContainer, quizScore, quizStartAgain);
 };
 
 const quizTemplate = (event) => {

@@ -27,7 +27,7 @@ export const createEndgameForm = (scoreText) => {
     return mainContent;
 };
 
-export const createEndgameRanking = () => {
+export const createEndgameRanking = (resetButton) => {
     const mainContent = document.querySelector('#app > main');
     mainContent.innerHTML = `
         <div class="rtc-quiz-endgame-ranking">
@@ -36,6 +36,7 @@ export const createEndgameRanking = () => {
             <h3 class="rtc-quiz-endgame-ranking_message">Thanks for Playing! 😃️</h3>
         </div>
     `;
+    mainContent.appendChild(resetButton);
     return mainContent;
 };
 

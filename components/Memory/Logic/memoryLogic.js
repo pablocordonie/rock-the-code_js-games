@@ -33,19 +33,14 @@ const handleMemoryCardClick = async (event, data, description, resetButton) => {
             if (firstCardImage.firstChild.alt === secondCardImage.firstChild.alt) {
 
                 discoveredPairs.push(flippedCards);
-
-                const points_div1Number = document.querySelector('.rtc-memory--points_div1-h3');
-                points_div1Number.innerText = discoveredPairs.length;
-
-                const points_div2Number = document.querySelector('.rtc-memory--points_div2-h3');
-                points_div2Number.innerText = discoveredPairs.length;
+                description.innerText = `You've found ${discoveredPairs.length} of ${data.length} pairs`;
 
                 flippedCards = [];
 
                 if (discoveredPairs.length === data.length) {
                     gameOver = true;
-                    await delay(1000);
-                    description.innerText = '🎉️  EPIC WIN!!  🎉️';
+                    await delay(500);
+                    description.innerText = '🎉️EPIC WIN!!🎉️';
                     resetButton.innerText = 'Start Again'
                 }
 

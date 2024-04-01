@@ -11,11 +11,11 @@
   font-size: 1rem;
 }
 
-.rtc-memory--points {
+.rtc-memory-points {
   font-size: 1.1rem;
 }
 
-.rtc-memory--points {
+.rtc-memory-points {
   display: flex;
   flex-direction: column;
 }
@@ -42,14 +42,18 @@
   color: #ffffff;
 }
 
-.rtc-memory--board {
+.rtc-memory-board {
+  background-color: #ffffff;
+  border: 0.3rem solid #cc0000;
+  border-radius: 0.75rem;
   display: grid;
   grid-gap: 0.5rem;
   grid-template-columns: repeat(4, 2.75rem);
   grid-template-rows: repeat(4, 4rem);
+  padding: 1rem;
 }
 
-.rtc-memory--board-card {
+.rtc-memory-board-card {
   display: flex;
   align-items: center;
   background-color: #ac0101;
@@ -60,23 +64,24 @@
   transform-style: preserve-3d;
 }
 
-.rtc-memory--board-card:hover {
+.rtc-memory-board-card:hover {
   background-color: #ff5555;
 }
 
-.rtc-memory--board-card-img {
+.rtc-memory-board-card-img {
   display: flex;
   visibility: hidden;
   user-select: none;
   width: 2rem;
 }
 
-.rtc-memory--board-card.flipped {
+.rtc-memory-board-card.flipped {
   background-color: #ffffff;
+  border: 0.2rem solid #ac0101;
   transform: rotateY(180deg);
 }
 
-.rtc-memory--board-card.flipped > .rtc-memory--board-card-img {
+.rtc-memory-board-card.flipped > .rtc-memory-board-card-img {
   visibility: visible;
 }
 
@@ -91,7 +96,7 @@
     gap: 2rem;
   }
 
-  .rtc-memory--board {
+  .rtc-memory-board {
     grid-template-columns: repeat(4, 3rem);
     grid-template-rows: repeat(4, 4.25rem);
   }
@@ -101,10 +106,6 @@
   .rtc-memory-game {
     gap: 3rem;
   }
-
-  .rtc-memory-description {
-    font-size: 1.15rem;
-  }
 }
 
 @media screen and (min-width: 460px) {
@@ -112,7 +113,7 @@
     gap: 3.5rem;
   }
 
-  .rtc-memory--points {
+  .rtc-memory-points {
     font-size: 1.25rem;
   }
 }
@@ -122,23 +123,14 @@
     gap: 4.5rem;
   }
 
-  .rtc-memory--points {
+  .rtc-memory-points {
     font-size: 1.5rem;
-  }
-
-  .rtc-memory--board {
-    grid-gap: 0.6rem;
   }
 }
 
 @media screen and (min-width: 600px) {
   .rtc-memory-game {
     gap: 5.25rem;
-  }
-
-  .rtc-memory--board {
-    grid-template-columns: repeat(4, 3.25rem);
-    grid-template-rows: repeat(4, 4.25rem);
   }
 }
 
@@ -147,14 +139,14 @@
     gap: 7rem;
   }
 
-  .rtc-memory--points {
+  .rtc-memory-points {
     font-size: 1.75rem;
   }
 }
 
 @media screen and (min-width: 768px) {
   .rtc-memory {
-    gap: 2rem;
+    gap: 1.5rem;
     padding-bottom: 4rem;
   }
 
@@ -163,18 +155,14 @@
   }
 
   .rtc-memory-reset {
-    font-size: 1rem;
+    font-size: 0.9rem;
     padding: 0.5rem 1.75rem;
   }
 
-  .rtc-memory-description {
-    font-size: 1.25rem;
-  }
-
-  .rtc-memory--board {
+  .rtc-memory-board {
     grid-gap: 0.75rem;
-    grid-template-columns: repeat(4, 3.5rem);
-    grid-template-rows: repeat(4, 5.25rem);
+    grid-template-columns: repeat(4, 2.75rem);
+    grid-template-rows: repeat(4, 4rem);
   }
 }
 
@@ -183,7 +171,7 @@
     gap: 8.75rem;
   }
 
-  .rtc-memory--points {
+  .rtc-memory-points {
     font-size: 2rem;
   }
 }
@@ -193,8 +181,8 @@
     gap: 10rem;
   }
 
-  .rtc-memory--board {
-    grid-gap: 0.9rem;
+  .rtc-memory-board {
+    grid-gap: 0.75rem;
   }
 }
 

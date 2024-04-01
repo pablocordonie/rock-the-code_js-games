@@ -1,10 +1,13 @@
 @import '../../css/style.css';
 
+/* TO-DO: adjust the reset button (and everything, just in case) for every viewport width */
+
 .rtc-quiz {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 2.5rem;
+  padding-bottom: 4rem;
   width: 100%;
 }
 
@@ -199,15 +202,7 @@
   font-size: 1rem;
 }
 
-.rtc-quiz-endgame-ranking_message {
-  padding: 1rem 0 4rem 0;
-}
-
 @media screen and (min-width: 768px) {
-  .rtc-quiz {
-    gap: 3.5rem;
-  }
-
   .rtc-quiz-game,
   .rtc-quiz-endgame {
     gap: 6rem;
@@ -218,7 +213,7 @@
     display: grid;
     grid-template-columns: repeat(3, 25% 50% 20%);
     grid-gap: 0;
-    padding: 1rem 0 0 0;
+    padding: 0;
     width: inherit;
   }
 
@@ -281,11 +276,11 @@
 
   .rtc-quiz-play_button,
   .rtc-quiz-card-answer {
-    padding: 0.75rem 4rem;
+    padding: 0.5rem 3rem;
   }
 
   .rtc-quiz-card {
-    gap: 2rem;
+    gap: 1.5rem;
     width: 100%;
   }
 
@@ -337,7 +332,6 @@
 
   .rtc-quiz-endgame-ranking {
     gap: 2rem;
-    padding-top: 2rem;
   }
 
   .rtc-quiz-endgame-ranking_scores {
@@ -347,9 +341,5 @@
   .rtc-quiz-endgame-ranking_scores-score {
     display: flex;
     gap: 16rem;
-  }
-
-  .rtc-quiz-endgame-ranking_message {
-    padding-top: 2rem;
   }
 }

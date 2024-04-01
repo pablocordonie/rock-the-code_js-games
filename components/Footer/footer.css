@@ -12,12 +12,12 @@
 }
 
 .rtc-footer-copyright-p {
-  font-size: 0.6rem;
+  font-size: 0.75rem;
 }
 
 @media screen and (min-width: 400px) {
   .rtc-footer-copyright-p {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
   }
 }
 

@@ -11,19 +11,19 @@ let board = [];
 let connect4Circle = '';
 
 const generateBoard = (resetButton) => {
-    const connect4Board = createContainer('div', 'rtc-connect4--board');
+    const connect4Board = createContainer('div', 'rtc-connect4-board');
 
     for (let r = 0; r < rows; r++) {
         let row = [];
-        const connect4Row = createBoardGrid('rtc-connect4--board-row', `row-${r + 1}`);
+        const connect4Row = createBoardGrid('rtc-connect4-board-row', `row-${r + 1}`);
 
         connect4Board.appendChild(connect4Row);
 
         for (let c = 0; c < columns; c++) {
             row.push(' ');
-            const connect4Box = createBoardGrid('rtc-connect4--board-box', `row-${r + 1} | box-${c + 1}`);
+            const connect4Box = createBoardGrid('rtc-connect4-board-box', `row-${r + 1} | box-${c + 1}`);
 
-            connect4Circle = createBoardGrid('rtc-connect4--board-circle', `${r}-${c}`);
+            connect4Circle = createBoardGrid('rtc-connect4-board-circle', `${r}-${c}`);
             connect4Circle.addEventListener('click', (event) => connect4Logic(event, connect4Circle, columns, rows, board, resetButton));
 
             connect4Box.appendChild(connect4Circle);

@@ -10,7 +10,7 @@ const mainMenuTemplate = () => {
 
     const welcomeMain = createContainer('main', 'rtc-welcome');
 
-    const h1 = createTitle('h1', 'rtc-header-h1', 'The Board 🎲️🎲️');
+    const h1 = createTitle('h1', 'rtc-welcome-h1', 'The Board 🎲️🎲️');
 
     const gamesDiv = createContainer('div', 'rtc-welcome-games');
 

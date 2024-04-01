@@ -6,8 +6,8 @@ import mainContentCleaner from '../../utils/mainContentCleaner';
 import shuffleArray from '../../utils/shuffleArray';
 
 const cardTemplate = (cardImage) => {
-    const memoryCard = createContainer('div', 'rtc-memory--board-card');
-    const memoryCardImg = createImg('rtc-memory--board-card-img', cardImage.src, `${cardImage.name} image`);
+    const memoryCard = createContainer('div', 'rtc-memory-board-card');
+    const memoryCardImg = createImg('rtc-memory-board-card-img', cardImage.src, `${cardImage.name} image`);
 
     memoryCard.appendChild(memoryCardImg);
 
@@ -25,14 +25,14 @@ const memoryTemplate = (event, data) => {
 
     const memoryGameDescription = createTitle('h2', 'rtc-memory-description', 'Find the 8 pairs');
 
-    const memoryBoard = createContainer('div', 'rtc-memory--board');
+    const memoryBoard = createContainer('div', 'rtc-memory-board');
 
-    const memoryPoints_1 = createContainerWithInnerHTML('rtc-memory--points rtc-memory--points_div1', '<h3 class="rtc-memory--points_div1-h3">0</h3>');
+    const memoryPoints_1 = createContainerWithInnerHTML('rtc-memory-points rtc-memory-points_div1', '<h3 class="rtc-memory-points_div1-h3"></h3>');
 
-    const memoryPoints_2 = createContainerWithInnerHTML('rtc-memory--points rtc-memory--points_div2', '<h3 class="rtc-memory--points_div2-h3">0</h3>');
+    const memoryPoints_2 = createContainerWithInnerHTML('rtc-memory-points rtc-memory-points_div2', '<h3 class="rtc-memory-points_div2-h3"></h3>');
 
     memoryBoard.addEventListener('click', (event) => {
-        if (event.target.classList.contains('rtc-memory--board-card')) {
+        if (event.target.classList.contains('rtc-memory-board-card')) {
             handleMemoryCardClick(event, data, memoryGameDescription, memoryReset);
         }
     });

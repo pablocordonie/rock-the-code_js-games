@@ -103,12 +103,12 @@ const connect4Logic = (event, connect4Circle, columns, rows, board, resetButton)
     connect4Circle = document.getElementById(`${r}-${c}`);
 
     if (currentPlayer == redPlayer) {
-        connect4Circle.classList.add('rtc-connect4--board-red_piece');
+        connect4Circle.classList.add('rtc-connect4-board-red_piece');
 
         currentPlayer = yellowPlayer;
         descriptionGame.innerText = 'Yellow Turn';
     } else {
-        connect4Circle.classList.add('rtc-connect4--board-yellow_piece');
+        connect4Circle.classList.add('rtc-connect4-board-yellow_piece');
 
         currentPlayer = redPlayer;
         descriptionGame.innerText = 'Red Turn';

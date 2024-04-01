@@ -17,7 +17,7 @@ let questionsCounter = 0;
 let score = 0;
 
 const SCORE_POINTS = 100;
-const MAX_QUESTIONS = 2;
+const MAX_QUESTIONS = 10;
 
 const getCardsInfo = async () => {
 
@@ -50,7 +50,7 @@ const getCardsInfo = async () => {
     return questionsCards;
 };
 
-const saveHighScore = (event) => {
+const saveHighScore = (event, resetButton) => {
     const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
     const MAX_HIGH_SCORES = 5;
     const mostRecentScore = localStorage.getItem('lastScore');
@@ -71,12 +71,12 @@ const saveHighScore = (event) => {
 
     localStorage.setItem('highScores', JSON.stringify(highScores));
 
-    createEndgameRanking();
+    createEndgameRanking(resetButton);
 
     highScores.forEach(highScore => createScoresContainer(highScore));
 };
 
-const getNewQuestion = (progressText, questionTitle, answers, scoreText) => {
+const getNewQuestion = (progressText, questionTitle, answers, scoreText, resetButton) => {
     if (availableQuestions.length === 0 || questionsCounter > MAX_QUESTIONS) {
         localStorage.setItem('lastScore', score);
         mainContentCleaner('quiz');
@@ -90,7 +90,7 @@ const getNewQuestion = (progressText, questionTitle, answers, scoreText) => {
             saveScoreBtn.disabled = !username.value;
         });
 
-        saveScoreBtn.addEventListener('click', saveHighScore);
+        saveScoreBtn.addEventListener('click', (event) => saveHighScore(event, resetButton));
 
     } else {
         correctAnswer = he.decode(availableQuestions[0].correctAnswer);
@@ -114,7 +114,7 @@ const getNewQuestion = (progressText, questionTitle, answers, scoreText) => {
     };
 };
 
-const addListenersToAnswers = (progressText, questionTitle, answers, scoreText) => {
+const addListenersToAnswers = (progressText, questionTitle, answers, scoreText, resetButton) => {
 
     answers.forEach(answer => {
         answer.addEventListener('click', async (event) => {
@@ -153,7 +153,7 @@ const addListenersToAnswers = (progressText, questionTitle, answers, scoreText) 
                     unselectedCorrectAnswer.classList.remove('correct');
                 }
             }
-            getNewQuestion(progressText, questionTitle, answers, scoreText);
+            getNewQuestion(progressText, questionTitle, answers, scoreText, resetButton);
         });
     });
 };
@@ -180,17 +180,16 @@ export const resetQuizGame = (event) => {
     quizTemplate();
 };
 
-const quizLogic = async (progressText, questionTitle, answersContainer, scoreText) => {
+const quizLogic = async (progressText, questionTitle, answersContainer, scoreText, resetButton) => {
     questionsCounter = 0;
     score = 0;
-    /* TO-DO: A visual loader is necessary to await 3 seconds for the API info (it's mandatory 'cause of the API behaviour which launches a 429 Error: Too Many Requests if the info isn't awaited) */
     renderLoader();
     availableQuestions = await getCardsInfo();
 
     const answers = Array.from(answersContainer.children);
 
     getNewQuestion(progressText, questionTitle, answers, scoreText);
-    addListenersToAnswers(progressText, questionTitle, answers, scoreText);
+    addListenersToAnswers(progressText, questionTitle, answers, scoreText, resetButton);
 };
 
 export default quizLogic;

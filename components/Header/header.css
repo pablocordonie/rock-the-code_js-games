@@ -14,7 +14,7 @@
 
 .rtc-header-h1 {
   cursor: default;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
 }
 
 .rtc-header-games {
@@ -29,7 +29,7 @@
   color: #e60023;
   cursor: pointer;
   font-family: inherit;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
   padding: 0.5rem;
   width: 5rem;
@@ -46,23 +46,19 @@
   }
 
   .rtc-header-games-button {
-    width: 5.5rem;
+    width: 5.75rem;
   }
 }
 
 @media screen and (min-width: 360px) {
-  .rtc-header.open {
-    gap: 2rem;
-  }
-
   .rtc-header-games {
     gap: 1.25rem;
   }
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 390px) {
   .rtc-header-h1 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 
   .rtc-header-games-button {
@@ -75,10 +71,6 @@
   .rtc-header-games {
     gap: 2rem;
   }
-
-  .rtc-header-games-button {
-    width: 7.5rem;
-  }
 }
 
 @media screen and (min-width: 768px) {
@@ -88,8 +80,13 @@
   }
 
   .rtc-header-h1 {
+    font-size: 1.5rem;
     text-align: center;
     width: inherit;
+  }
+
+  .rtc-header-games-button {
+    width: 7rem;
   }
 }
 
