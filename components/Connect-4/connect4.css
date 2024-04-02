@@ -151,7 +151,7 @@
 
 @media screen and (min-width: 768px) {
   .rtc-connect4 {
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
   .rtc-connect4-description {
