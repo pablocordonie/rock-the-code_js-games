@@ -1,7 +1,5 @@
 @import '../../css/style.css';
 
-/* TO-DO: adjust the reset button (and everything, just in case) for every viewport width */
-
 .rtc-quiz {
   display: flex;
   flex-direction: column;
